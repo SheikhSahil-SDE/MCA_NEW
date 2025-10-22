@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Session Demo</title>
+</head>
+<body>
+    <h2>Login Simulation</h2>
+    <form action="SessionServlet" method="post">
+        <label>Username:</label>
+        <input type="text" name="username" required><br/><br/>
+        <label>Remember Me (optional):</label>
+        <input type="checkbox" name="remember" value="yes"><br/><br/>
+        <input type="submit" value="Login">
+    </form>
+    <hr/>
+    <form action="SessionServlet" method="get">
+        <input type="hidden" name="action" value="status">
+        <input type="submit" value="Check Session Status">
+    </form>
+</body>
+</html>
