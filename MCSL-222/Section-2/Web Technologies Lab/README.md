@@ -29,12 +29,17 @@
 
 # 2.8 REFERENCES 
 ● Download JDK: https://www.oracle.com/in/java/technologies/javase-
-downloads.html /n
+downloads.html 
+
 ● JDK Installation Document for Multiple Platform: 
 https://docs.oracle.com/en/java/javase/16/install/overview-jdk-
-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A /n
+installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A
+
 ● Java Environment PATH AND CLASSPATH Setup for the various platform: 
-https://docs.oracle.com/javase/tutorial/essential/environment/paths.html /n
-● Download NetBeans IDE: https://netbeans.apache.org/download/index.html /n
-● Download Eclipse IDE: https://www.eclipse.org/downloads/ /n
+https://docs.oracle.com/javase/tutorial/essential/environment/paths.html 
+
+● Download NetBeans IDE: https://netbeans.apache.org/download/index.html
+
+● Download Eclipse IDE: https://www.eclipse.org/downloads/
+
 ● Download Apache 
