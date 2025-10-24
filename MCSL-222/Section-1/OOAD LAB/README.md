@@ -15,8 +15,11 @@
 
 * Grady Booch, James Rumbaugh and Ivar  Jacobson, “The Unified Modeling Language 
 User Guide”, Pearson Education,2004. 
- * https://argouml.en.softonic.com/ 
- * https://argouml-tigris-org.github.io/tigris/argouml/ 
- * https://staruml.io/ 
- * https://docs.staruml.io/ 
- * https://docs.staruml.io/user-guide/editing-elements
+ 
+* https://argouml.en.softonic.com/ 
+ 
+* https://argouml-tigris-org.github.io/tigris/argouml/ 
+
+* https://staruml.io/ 
+* https://docs.staruml.io/ 
+* https://docs.staruml.io/user-guide/editing-elements
