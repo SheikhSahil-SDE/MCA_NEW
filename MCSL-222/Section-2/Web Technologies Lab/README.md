@@ -26,6 +26,7 @@
     SESSION 9: SPRING SECURITY
     SESSION 10: BOOTSTRAP, ROLE BASED AUTHENTICATION AND CSRF
 
+<a href="https://github.com/SheikhSahil-SDE/MCA_NEW/tree/main/MCSL-222%2FSection-2%2FWeb%20Technologies%20Lab%2F2.7">All the sessions</a>
 
 # 2.8 REFERENCES 
 ● Download JDK: https://www.oracle.com/in/java/technologies/javase-downloads.html 
