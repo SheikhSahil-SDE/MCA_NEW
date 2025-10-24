@@ -58,7 +58,8 @@ and Rate2.
 
 # Session -10
 25. Create a point to pint network between two nodes with the following 
-parameters. /n
+parameters.
+
 Link bandwidth between the two nodes. Default is 5 Mbps. 
 
 One way delay of the link. Default is 5 milliseconds. 
