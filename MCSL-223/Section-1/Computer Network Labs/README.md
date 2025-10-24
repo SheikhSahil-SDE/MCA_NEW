@@ -1,5 +1,5 @@
 # Structure
-#1.0 Introduction
+# 1.0 Introduction
 # 1.1 Objectives
 # 1.2 General Guidelines
 # 1.3 Introduction to NS-3
