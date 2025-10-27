@@ -1,9 +1,9 @@
 # Session-1 
-
-1. Draw Class Diagram for Online Shopping System (First, list the assumptions of the 
+   
+   1. Draw Class Diagram for Online Shopping System (First, list the assumptions of the 
 shopping system and then identify classes, and then draw the diagram). 
-2. Draw Class Diagram for Online Examination System. 
-3. Draw Object Diagram for Online Banking System. 
+   2. Draw Class Diagram for Online Examination System. 
+   3. Draw Object Diagram for Online Banking System. 
 
 # Session-2 
 
