@@ -1,25 +1,40 @@
-# 1.0 Introduction 
+# Session-1 
 
-# 1.1 Objectives 
+1. Draw Class Diagram for Online Shopping System (First, list the assumptions of the 
+shopping system and then identify classes, and then draw the diagram). 
+2. Draw Class Diagram for Online Examination System. 
+3. Draw Object Diagram for Online Banking System. 
 
-# 1.2 UML Diagrams 
+# Session-2 
 
-# 1.3 Tools for Drawing UML Diagrams 
+4. Draw Use Case Diagram for Online Shopping System. 
+5. Draw Use Case Diagram for Library Management System. 
 
-# 1.4 Some UML Diagrams 
-    1.4.1 Some UML Diagrams for Practice 
+# Session-3 
 
-# 1.5. List of Lab Exercise 
+6. Draw Sequence Diagram for Online Shopping System. 
+7. Draw Sequence Diagram for Online Examination System. 
+8. Draw a Sequence diagram for Employee Management System. 
 
-# 1.6 References/Further Readings 
+# Session-4 
 
-* Grady Booch, James Rumbaugh and Ivar  Jacobson, “The Unified Modeling Language 
-User Guide”, Pearson Education,2004. 
- 
-* https://argouml.en.softonic.com/ 
- 
-* https://argouml-tigris-org.github.io/tigris/argouml/ 
+9. Draw Collaboration Diagram for Student Registration Process in Masters Program of 
+a University. 
+10. Draw Collaboration Diagram for Online Banking System. 
+11. Draw a Collaboration diagram for Employee Management System. 
 
-* https://staruml.io/ 
-* https://docs.staruml.io/ 
-* https://docs.staruml.io/user-guide/editing-elements
+# Session-5 
+
+12. Activity Diagram Online Banking System. 
+13. Draw Activity Diagram for Online Examination System. 
+
+# Session-6 
+
+14. State Chart Diagram for Online Examination System. 
+15. State Chart Diagram for Online Fund Transfer through Netbanking Banking System. 
+
+# Session-7 
+
+16. Draw Component Diagram for Online Examination System. 
+17. Draw Component Diagram for Order Processing Application. 
+18. Diagram Deployment Diagram for Online Student Admission System.
