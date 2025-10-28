@@ -56,7 +56,7 @@ it clogs whole of the dumbbell bridge capacity.
 24. Use MatPlotlLib or GNUPlot to visualize cwnd vs time, also mention Rate1 
 and Rate2. 
 
-# Session -10
+# Session - 10
 25. Create a point to pint network between two nodes with the following 
 parameters. Link bandwidth between the two nodes. Default is 5 Mbps. One way delay of the link. Default is 5 milliseconds. Loss rate of packets on the link. Default is 0.000001. (This covers losses other 
 than those that occur due to buffer drops at node0.) 
