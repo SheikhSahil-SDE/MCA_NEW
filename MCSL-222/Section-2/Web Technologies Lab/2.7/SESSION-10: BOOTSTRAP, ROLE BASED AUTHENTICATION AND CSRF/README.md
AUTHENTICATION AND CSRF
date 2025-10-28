@@ -1,0 +1,14 @@
+1. Add Bootstrap styling in the Login and registration page in the above 
+exercises in session 9. 
+
+2. Create a Role Table in the database and configure it with Spring Boot, 
+Security and Hibernate. 
+
+3. Write code for role-based authentication using Spring Security. 
+
+4. Display current logged in User details on the dashboard along with client IP, 
+data time and user’s current role. 
+
+5. Add CSRF functionality in the authentication. 
+
+6. Restrict role-based access to views in Spring Boot Security.
