@@ -42,4 +42,6 @@ a University.
 # Session-8 
 19. Implement the following Class Diagram in C++/Java.
 
+<img src="https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Figure%201.15.jpg" alt="Figure 1.15" width="400"/>
+
 20. Implement the Class Diagram of figure 1.18, in C++ or Java.
