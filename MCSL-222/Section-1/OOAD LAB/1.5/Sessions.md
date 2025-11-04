@@ -41,3 +41,5 @@ a University.
 
 # Session-8 
 19. Implement the following Class Diagram in C++/Java.
+
+20. Implement the Class Diagram of figure 1.18, in C++ or Java.
