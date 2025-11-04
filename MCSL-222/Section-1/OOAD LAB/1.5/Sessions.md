@@ -50,4 +50,10 @@ a University.
 21. Implement the following Associations using C++/Java.
 <img src="" alt="" width="400"/>
 
+22. Implement the following Associations using C++/Java.
+<img src="" alt="" width="400"/>
+
+# Session-10 
+23. Do mapping of the following Classes into database tables
+
 <img src="" alt="" width="400"/>
