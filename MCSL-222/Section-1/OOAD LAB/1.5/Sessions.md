@@ -49,14 +49,14 @@ a University.
 
 # Session-9 
 21. Implement the following Associations using C++/Java.
-<img src="https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Figure%201.16.jpg" alt="Figure 1.15" width="400"/>
+<img src="https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Figure%201.16.jpg" alt="Figure 1.16" width="400"/>
 
 
 22. Implement the following Associations using C++/Java.
-<img src="https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Figure%201.15.jpg" alt="Figure 1.17" width="400"/>
+<img src="https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Figure%201.17.jpg" alt="Figure 1.17" width="400"/>
 
 
 # Session-10 
 23. Do mapping of the following Classes into database tables
 
-<img src="https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Figure%201.15.jpg" alt="Figure 1.18" width="400"/>
+<img src="https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Figure%201.18.jpg" alt="Figure 1.18" width="400"/>
