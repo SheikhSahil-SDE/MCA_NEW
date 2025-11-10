@@ -45,9 +45,9 @@ Exception handling is implemented with error.jsp mapped as error page for the ap
 4. Use of JSP Scripting, Expression, Declaration Tags
 * In a sample JSP file, demonstrates all three scripting tags:
 
-* ~~~<% %>~~~ scripting
+* ```<% %>``` scripting
 
-* ~~~<%= %>~~~ expression
+* ```<%= %>``` expression
 
 * ```<%! %>``` declaration
 
@@ -55,7 +55,7 @@ Exception handling is implemented with error.jsp mapped as error page for the ap
 Sample JSP imports JSTL library and demonstrates use of <c:out>, <c:if>, <c:forEach>, <c:choose>, <c:when>, <c:otherwise>, <c:url>, and <c:redirect>
 
 6. Action Elements and Implicit Objects
-Separate example JSPs demonstrate the action elements (~~~jsp:forward~~~, jsp:include, ~~~jsp:useBean~~~, ~~~jsp:setProperty~~~, ~~~jsp:getProperty~~~) and various implicit objects as previously required.
+Separate example JSPs demonstrate the action elements (```jsp:forward```, ```jsp:include```, ```jsp:useBean```, ```jsp:setProperty```, ```jsp:getProperty```) and various implicit objects as previously required.
 
 
 # Perplexity Lin [https://www.perplexity.ai/search/write-a-jsp-application-using-cgMHkNGPR6eQYQtD8HUmFg#2]
