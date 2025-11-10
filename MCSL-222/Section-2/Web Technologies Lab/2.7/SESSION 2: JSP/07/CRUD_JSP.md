@@ -56,3 +56,6 @@ Sample JSP imports JSTL library and demonstrates use of <c:out>, <c:if>, <c:forE
 
 6. Action Elements and Implicit Objects
 Separate example JSPs demonstrate the action elements (jsp:forward, jsp:include, jsp:useBean, jsp:setProperty, jsp:getProperty) and various implicit objects as previously required.
+
+
+# Perplexity Lin [https://www.perplexity.ai/search/write-a-jsp-application-using-cgMHkNGPR6eQYQtD8HUmFg#2]
