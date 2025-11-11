@@ -121,12 +121,30 @@ if(user == null){
 
 
 _```error.jsp``` (Exception Handling)_
+
 ```text```
 ```
 <%@ page isErrorPage="true" %>
 <h2>Error Occurred</h2>
 <p>Type: <%= exception.getClass().getName() %></p>
 <p>Message: <%= exception.getMessage() %></p>
+```
+
+**Database**
+
+  * Database: ```IGNOU```
+  * Table: ```Student``` (id, name, contact, enrollment, courses, ...)
+
+
+```sql```
+```
+CREATE TABLE Student (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    contact VARCHAR(20),
+    enrollment VARCHAR(50),
+    courses VARCHAR(255)
+);
 ```
 
 # Perplexity Lin [https://www.perplexity.ai/search/write-a-jsp-application-using-cgMHkNGPR6eQYQtD8HUmFg#2]
