@@ -89,6 +89,22 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 }
 
 ```
+_StudentServlet.java (Partial CRUD Example_
+
+```JAVA```
+```
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // action=[list|add|edit|update|delete]
+    String action = request.getParameter("action");
+    if(action == null || action.equals("list")) {
+        // fetch students from DB and forward to listStudents.jsp
+    } else if(action.equals("edit")) {
+        // select student by id, forward to studentForm.jsp
+    }
+    // Implement add, update, delete in doPost or doGet as needed
+}
+
+```
 
 
 
