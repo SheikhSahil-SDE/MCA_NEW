@@ -120,4 +120,13 @@ if(user == null){
 ```
 
 
+_```error.jsp``` (Exception Handling)_
+```text```
+```
+<%@ page isErrorPage="true" %>
+<h2>Error Occurred</h2>
+<p>Type: <%= exception.getClass().getName() %></p>
+<p>Message: <%= exception.getMessage() %></p>
+```
+
 # Perplexity Lin [https://www.perplexity.ai/search/write-a-jsp-application-using-cgMHkNGPR6eQYQtD8HUmFg#2]
