@@ -52,10 +52,44 @@ Exception handling is implemented with error.jsp mapped as error page for the ap
 * ```<%! %>``` declaration
 
 5. JSTL Usage
-Sample JSP imports JSTL library and demonstrates use of <c:out>, <c:if>, <c:forEach>, <c:choose>, <c:when>, <c:otherwise>, <c:url>, and <c:redirect>
+Sample JSP imports JSTL library and demonstrates use of ```<c:out>```, ```<c:if>```, ```<c:forEach>```, ```<c:choose>```, ```<c:when>```, ```<c:otherwise>```, ```<c:url>```, and ```<c:redirect>```
 
 6. Action Elements and Implicit Objects
 Separate example JSPs demonstrate the action elements (```jsp:forward```, ```jsp:include```, ```jsp:useBean```, ```jsp:setProperty```, ```jsp:getProperty```) and various implicit objects as previously required.
+
+**Example File/Code Snippets**
+_login.jsp_
+```
+<form method="post" action="LoginServlet">
+    Username: <input type="text" name="username">
+    Password: <input type="password" name="password">
+    <input type="submit" value="Login">
+</form>
+<% String error = (String)request.getAttribute("error"); if(error != null){ %>
+    <div style="color:red"><%= error %></div>
+<% } %>
+
+```
+_LoginServlet.java_
+```
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String user = request.getParameter("username");
+    String pass = request.getParameter("password");
+    // TODO: real authentication
+    if("admin".equals(user) && "admin123".equals(pass)) {
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
+        Cookie loginCookie = new Cookie("user", user);
+        response.addCookie(loginCookie);
+        response.sendRedirect("welcome.jsp");
+    } else {
+        request.setAttribute("error", "Invalid login!");
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
+}
+
+```
+
 
 
 # Perplexity Lin [https://www.perplexity.ai/search/write-a-jsp-application-using-cgMHkNGPR6eQYQtD8HUmFg#2]
