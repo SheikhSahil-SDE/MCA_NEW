@@ -46,11 +46,11 @@ Demonstrates HTTP session usage for login tracking, storing user/role data
 4. Use of JSP Scripting, Expression, Declaration Tags
 * In a sample JSP file, demonstrates all three scripting tags:
 
-* ```<% %>``` scripting
+  * ```<% %>``` scripting
 
-* ```<%= %>``` expression
+  * ```<%= %>``` expression
 
-* ```<%! %>``` declaration
+  * ```<%! %>``` declaration
 
 5. JSTL Usage
 Sample JSP imports JSTL library and demonstrates use of ```<c:out>```, ```<c:if>```, ```<c:forEach>```, ```<c:choose>```, ```<c:when>```, ```<c:otherwise>```, ```<c:url>```, and ```<c:redirect>```
