@@ -103,9 +103,21 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
     }
     // Implement add, update, delete in doPost or doGet as needed
 }
-
 ```
 
+_Session Management Example (in ```welcome.jsp``` or a servlet)_
+```TEXT```
+```
+<%
+String user = (String)session.getAttribute("user");
+if(user == null){
+    response.sendRedirect("login.jsp");
+} else {
+    out.println("Welcome, " + user);
+}
+%>
+
+```
 
 
 # Perplexity Lin [https://www.perplexity.ai/search/write-a-jsp-application-using-cgMHkNGPR6eQYQtD8HUmFg#2]
