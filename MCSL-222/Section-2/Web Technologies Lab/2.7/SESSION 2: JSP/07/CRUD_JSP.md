@@ -22,25 +22,25 @@
 1. Login System
 login.jsp form submits to LoginServlet
 
-Servlet checks credentials, sets session attribute, redirects to welcome.jsp
+* Servlet checks credentials, sets session attribute, redirects to ```welcome.jsp```
 
-Session/cookie techniques to maintain/authenticate user​
+* Session/cookie techniques to maintain/authenticate user​
 
 2. Student CRUD with JDBC
 studentForm.jsp for add/edit, submits to StudentServlet
 
-listStudents.jsp lists all students using JDBC, with edit/delete links
+* listStudents.jsp lists all students using JDBC, with edit/delete links
 
-StudentServlet has logic for handling all CRUD functional URLs (action=add, action=edit, etc.)
+* StudentServlet has logic for handling all CRUD functional URLs (action=add, action=edit, etc.)
 
-Uses a database named IGNOU with a Student table​
+* Uses a database named IGNOU with a Student table​
 
 3. Session Management & Exception Handling
 Demonstrates HTTP session usage for login tracking, storing user/role data
 
-Uses cookies for session tracking
+* Uses cookies for session tracking
 
-Exception handling is implemented with error.jsp mapped as error page for the app or for a specific servlet/JSP​
+* Exception handling is implemented with error.jsp mapped as error page for the app or for a specific servlet/JSP​
 
 4. Use of JSP Scripting, Expression, Declaration Tags
 * In a sample JSP file, demonstrates all three scripting tags:
