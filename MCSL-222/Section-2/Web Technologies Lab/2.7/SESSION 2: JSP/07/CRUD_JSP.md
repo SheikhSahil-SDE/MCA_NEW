@@ -151,7 +151,7 @@ CREATE TABLE Student (
 **Complete Guides and References**
 * [Student Management System Servlet JSP Example][https://github.com/kishan0725/Student-Management-System]
 
-*[CRUD App with JSP, Servlet, JDBC][https://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example][https://www.javaguides.net/2019/03/jsp-servlet-jdbc-mysql-crud-example-tutorial.html]
+* [CRUD App with JSP, Servlet, JDBC][https://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example][https://www.javaguides.net/2019/03/jsp-servlet-jdbc-mysql-crud-example-tutorial.html]
 
 * [Session Handling][https://www.digitalocean.com/community/tutorials/java-session-management-servlet-httpsession-url-rewriting][https://studylib.net/doc/27521054/slot-8-9-10-sessions][https://www.geeksforgeeks.org/java/servlet-httpsession-login-and-logout-example/]
 
