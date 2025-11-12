@@ -22,3 +22,10 @@ my-spring-mvc-app/
                 ├── spring-servlet.xml
                 └── web.xml
 ```
+
+
+
+
+
+
+[Gemini Link](https://g.co/gemini/share/f44836a7efda)
