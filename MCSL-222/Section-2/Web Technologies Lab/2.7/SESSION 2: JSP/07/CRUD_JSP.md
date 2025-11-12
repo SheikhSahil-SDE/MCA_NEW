@@ -149,13 +149,13 @@ CREATE TABLE Student (
 ```
 
 **Complete Guides and References**
-* [Student Management System Servlet JSP Example][https://github.com/kishan0725/Student-Management-System]
+* Student Management System Servlet JSP Example [https://github.com/kishan0725/Student-Management-System]
 
-* [CRUD App with JSP, Servlet, JDBC][https://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example]<br>[https://www.javaguides.net/2019/03/jsp-servlet-jdbc-mysql-crud-example-tutorial.html]
+* CRUD App with JSP, Servlet, JDBC [https://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example]<br>[https://www.javaguides.net/2019/03/jsp-servlet-jdbc-mysql-crud-example-tutorial.html]
 
-* [Session Handling][https://www.digitalocean.com/community/tutorials/java-session-management-servlet-httpsession-url-rewriting]<br>[https://studylib.net/doc/27521054/slot-8-9-10-sessions] <br> [https://www.geeksforgeeks.org/java/servlet-httpsession-login-and-logout-example/]
+* Session Handling [https://www.digitalocean.com/community/tutorials/java-session-management-servlet-httpsession-url-rewriting]<br>[https://studylib.net/doc/27521054/slot-8-9-10-sessions] <br> [https://www.geeksforgeeks.org/java/servlet-httpsession-login-and-logout-example/]
 
-* [Error Handling in Servlet/JSP][https://www.digitalocean.com/community/tutorials/servlet-exception-and-error-handling-example-tutorial]
+* Error Handling in Servlet/JSP [https://www.digitalocean.com/community/tutorials/servlet-exception-and-error-handling-example-tutorial]
 
 
 # Perplexity Link [https://www.perplexity.ai/search/write-a-jsp-application-using-cgMHkNGPR6eQYQtD8HUmFg#2]
