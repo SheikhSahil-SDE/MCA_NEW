@@ -89,10 +89,10 @@ classDiagram
 ```
 **Explanation of Cardinality (Multiplicity)**
 
-* Exam 1 -- 1.. Question: One Exam must contain at least one Question, but usually contains many.
+* **Exam 1 -- 1.. Question**: One Exam must contain at least one Question, but usually contains many.
 
-* Student 1 -- 0.. Result:** A Student might not have taken any exams yet (0 results), or they may have taken many (many results).
+* **Student 1 -- 0.. Result:** A Student might not have taken any exams yet (0 results), or they may have taken many (many results).
 
-* Administrator 1 --> * Exam: One Administrator can create multiple exams.
+* **Administrator 1 --> * Exam**: One Administrator can create multiple exams.
 
 
