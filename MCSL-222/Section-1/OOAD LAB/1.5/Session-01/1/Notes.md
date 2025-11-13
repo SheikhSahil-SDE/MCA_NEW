@@ -19,10 +19,11 @@ Based on the assumptions, here are the core classes, their responsibilities, and
 <Table goes here>
 
 
-3. Class Diagram for Online Shopping System
+# 3. Class Diagram for Online Shopping System
+
 Below is the visual representation of the Class Diagram.
 Diagram Logic & Relationships (Mermaid)
-Inheritance: Customer and Admin inherit from User.
-Composition: An Order consists of OrderDetails (if the order dies, the details die).
-Association: A Customer has a ShoppingCart and places Orders.
+**Inheritance**: Customer and Admin inherit from User.
+**Composition**: An Order consists of OrderDetails (if the order dies, the details die).
+**Association**: A Customer has a ShoppingCart and places Orders.
 <!-- end list -->
