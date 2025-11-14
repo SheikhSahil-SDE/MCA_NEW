@@ -2,7 +2,7 @@
  * Class Diagram (like we did before) is the blueprint (e.g., the idea of a "Customer").
  * Object Diagram (which you've asked for now) is a snapshot of the system at a specific moment, showing actual instances (e.g., the specific customer "Mr. Ajay Kumar").
 
-**Let's design one**
+**Let's design one** <br>
 **1. Scenario (The "Snapshot")**
 To draw an object diagram, we must first define the specific moment in time we are capturing.
 
@@ -25,7 +25,8 @@ Based on this scenario, we have the following objects (instances) and their curr
 | bank | Bank | bankName = "Apex Bank" |
 3. Object Diagram for Online Banking System
 This diagram shows the links between these specific objects. The object name is underlined in standard UML, but in text/Mermaid, we show it as objectName : ClassName.
-Diagram Logic & Relationships (Mermaid)
+
+**Diagram Logic & Relationships (Mermaid)**
  * The bank object has a link to the ajay (Customer) object.
  * The ajay (Customer) object is linked to both of his accounts.
  * This visualizes the "has-a" relationship (Association) in practice at a single point in time.
