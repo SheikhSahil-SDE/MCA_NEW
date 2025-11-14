@@ -30,6 +30,9 @@ Diagram Logic & Relationships (Mermaid)
  * The ajay (Customer) object is linked to both of his accounts.
  * This visualizes the "has-a" relationship (Association) in practice at a single point in time.
 <!-- end list -->
+
+```mermaid```
+```
 graph TD
     subgraph "Online Banking System (Object Diagram Snapshot)"
         %% Define the Objects %%
@@ -47,6 +50,9 @@ graph TD
     %% Style the nodes to look like UML objects %%
     classDef object fill:#FFFFE0,stroke:#333,stroke-width:2px;
     class Bank,Customer,Savings,Loan object;
+
+```
+
 
 Explanation of the Links
  * bank -- "manages" --> ajay: The "Apex Bank" object holds a reference to its customer, "Ajay Kumar."
