@@ -21,3 +21,119 @@ I'm focusing now on precisely mapping the actors to use cases, confirming that t
 Reviewing the Model
 I'm verifying that the diagram accurately reflects the classic library model, ensuring that the roles and actions of both the Librarian and Member are precisely mapped. I'm focusing on simplicity, making certain the core functionality, like issuing and returning books, is accurately represented, and that relationships, especially include and extend, are modeled correctly.
 -->
+This diagram models the functional requirements of the system, showing how different users (actors) interact with it.
+
+Hello, Sir.
+
+Certainly. Here is the Use Case Diagram for a Library Management System, following the structure for your MCSL222 lab.
+
+This diagram models the functional requirements of the system, showing how different users (actors) interact with it.
+
+1. Identification of Actors
+Member (Primary): The student or patron who borrows, returns, and searches for books.
+
+Librarian (Primary): The administrator who manages the library's inventory, member accounts, and the lending process.
+
+2. Identification of Use Cases
+Login: Authenticate either a Member or a Librarian.
+
+Search Book: Browse or search the library catalog for a book's availability.
+
+Reserve Book: (Member) Place a hold on a book that is currently checked out.
+
+Issue Book: (Librarian) Formally lend a book to a member, creating a loan record.
+
+Return Book: (Librarian) Process a book being returned by a member.
+
+Calculate Fine: A conditional action that is triggered if a book is returned past its due date.
+
+Manage Members: (Librarian) Add, delete, or update member accounts.
+
+Manage Books: (Librarian) Add new books to the catalog or remove old ones.
+
+3. Use Case Diagram for Library Management System
+Diagram Logic & Relationships (Mermaid)
+This diagram illustrates the interactions and the dependencies between the actions.
+
+Code snippet
+
+graph TD
+    subgraph "Library Management System"
+        direction LR
+        UC1(Login)
+        UC2(Search Book)
+        UC3(Reserve Book)
+        UC4(Issue Book)
+        UC5(Return Book)
+        UC6(Calculate Fine)
+        UC7(Manage Members)
+        UC8(Manage Books)
+
+        %% Include / Extend Relationships %%
+        UC3 -- "<<include>>" --> UC1
+        UC4 -- "<<include>>" --> UC1
+        UC5 -- "<<include>>" --> UC1
+        UC5 <-- "<<extend>>" -- UC6
+    end
+
+    %% Actors %%
+    Member(Member)
+    Librarian(Librarian)
+
+    %% Actor Relationships %%
+    Member -- UC1
+    Member -- UC2
+    Member -- UC3
+
+    Librarian -- UC1
+    Librarian -- UC2
+    Librarian -- UC4
+    Librarian -- UC5
+    Librarian -- UC7
+    Librarian -- UC8
+    
+    %% Style %%
+    classDef actor fill:#f9f,stroke:#333,stroke-width:2px;
+    class Member,Librarian actor;
+
+
+Explanation of Key Relationships
+Actor Associations (Solid Lines):
+
+Both Member and Librarian can Login and Search Book.
+
+Only the Member can Reserve Book.
+
+Only the Librarian can Issue Book, Return Book, Manage Members, and Manage Books.
+
+<<include>> (Dashed Arrow):
+
+This shows a mandatory prerequisite.
+
+To Reserve Book, Issue Book, or Return Book, the user must perform the Login use case.
+
+<<extend>> (Dashed Arrow):
+
+This shows an optional or conditional action.
+
+The Calculate Fine use case extends the Return Book use case. This means the fine is calculated only if the condition (book is overdue) is met during the return process. This is a key distinction from <<include>>.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
