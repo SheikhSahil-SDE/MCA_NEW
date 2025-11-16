@@ -131,9 +131,9 @@ sequenceDiagram
 
 **4. Step-by-Step Explanation**
 
-1. checkout(): The Customer (Actor) sends a checkout() message to the :CheckoutSystem. The activation bar on the CheckoutSystem lifeline begins.
-2. getCartItems(): The :CheckoutSystem sends a message to the :ShoppingCart to get the list of items and the total price.
-3. return cartItems: The :ShoppingCart (dashed line) returns this information to the :CheckoutSystem.
+1. ```checkout()```: The ```Customer``` (Actor) sends a ```checkout()``` message to the ```:CheckoutSystem```. The activation bar on the ```CheckoutSystem``` lifeline begins.
+2. ```getCartItems()```: The ```:CheckoutSystem``` sends a message to the ```:ShoppingCart``` to get the list of items and the total price.
+3. ```return cartItems: The :ShoppingCart (dashed line) returns this information to the :CheckoutSystem.
 4. createOrder(): The :CheckoutSystem creates a new :Order object, initializing it with the cart items. It's marked as "Pending" by default.
 5. processPayment(): The :CheckoutSystem forwards the total amount to the external :PaymentGateway.
 6. return paymentStatus: The :PaymentGateway returns a status (e.g., "Success" or "Failed").
@@ -145,7 +145,7 @@ sequenceDiagram
 
 
 
-()[https://gemini.google.com/share/062af23382fc]
+(GEMINI CHAT)[https://gemini.google.com/share/062af23382fc]
 
 
 
