@@ -23,40 +23,40 @@ I'm verifying that the diagram accurately reflects the classic library model, en
 -->
 This diagram models the functional requirements of the system, showing how different users (actors) interact with it.
 
-Hello, Sir.
-
-Certainly. Here is the Use Case Diagram for a Library Management System, following the structure for your MCSL222 lab.
-
 This diagram models the functional requirements of the system, showing how different users (actors) interact with it.
 
-1. Identification of Actors
-Member (Primary): The student or patron who borrows, returns, and searches for books.
+**1. Identification of Actors**   
 
-Librarian (Primary): The administrator who manages the library's inventory, member accounts, and the lending process.
+* **Member (Primary)**: The student or patron who borrows, returns, and searches for books.
 
-2. Identification of Use Cases
-Login: Authenticate either a Member or a Librarian.
+* **Librarian (Primary)**: The administrator who manages the library's inventory, member accounts, and the lending process.
 
-Search Book: Browse or search the library catalog for a book's availability.
+**2. Identification of Use Cases**
+    
+* **Login**: Authenticate either a Member or a Librarian.
 
-Reserve Book: (Member) Place a hold on a book that is currently checked out.
+* **Search Book**: Browse or search the library catalog for a book's availability.
 
-Issue Book: (Librarian) Formally lend a book to a member, creating a loan record.
+* **Reserve Book**: (Member) Place a hold on a book that is currently checked out.
 
-Return Book: (Librarian) Process a book being returned by a member.
+* **Issue Book**: (Librarian) Formally lend a book to a member, creating a loan record.
 
-Calculate Fine: A conditional action that is triggered if a book is returned past its due date.
+* **Return Book**: (Librarian) Process a book being returned by a member.
 
-Manage Members: (Librarian) Add, delete, or update member accounts.
+* **Calculate Fine**: A conditional action that is triggered if a book is returned past its due date.
 
-Manage Books: (Librarian) Add new books to the catalog or remove old ones.
+* **Manage Members**: (Librarian) Add, delete, or update member accounts.
 
-3. Use Case Diagram for Library Management System
-Diagram Logic & Relationships (Mermaid)
+* **Manage Books**: (Librarian) Add new books to the catalog or remove old ones.
+
+**3. Use Case Diagram for Library Management System**
+
+**Diagram Logic & Relationships (Mermaid)**
+
 This diagram illustrates the interactions and the dependencies between the actions.
 
-Code snippet
-
+```Code snippet```
+```
 graph TD
     subgraph "Library Management System"
         direction LR
@@ -95,28 +95,24 @@ graph TD
     %% Style %%
     classDef actor fill:#f9f,stroke:#333,stroke-width:2px;
     class Member,Librarian actor;
+```
 
+**Explanation of Key Relationships**
 
-Explanation of Key Relationships
-Actor Associations (Solid Lines):
+**Actor Associations (Solid Lines)**:
 
-Both Member and Librarian can Login and Search Book.
+   * Both ```Member``` and ```Librarian``` can Login and Search Book.
+   * Only the ```Member``` can ```Reserve Book```.
+   * Only the ```Librarian``` can ```Issue Book```, ```Return Book```, ```Manage Members```, and ```Manage Books```.
 
-Only the Member can Reserve Book.
+** ```<<include>>``` (Dashed Arrow)**: <br>
+* This shows a mandatory prerequisite.    
+* To ```Reserve Book```, Issue Book, or Return Book, the user must perform the Login use case.
 
-Only the Librarian can Issue Book, Return Book, Manage Members, and Manage Books.
+* ```<<extend>>``` (Dashed Arrow):
 
-<<include>> (Dashed Arrow):
-
-This shows a mandatory prerequisite.
-
-To Reserve Book, Issue Book, or Return Book, the user must perform the Login use case.
-
-<<extend>> (Dashed Arrow):
-
-This shows an optional or conditional action.
-
-The Calculate Fine use case extends the Return Book use case. This means the fine is calculated only if the condition (book is overdue) is met during the return process. This is a key distinction from <<include>>.
+* This shows an optional or conditional action.
+* The ```Calculate Fine``` use case extends the ```Return Book``` use case.<br> This means the fine is calculated only if the condition (book is overdue) is met during the return process. This is a key distinction from ```<<include>>```.
 
 
 
@@ -129,7 +125,7 @@ The Calculate Fine use case extends the Return Book use case. This means the fin
 
 
 
-
+<!--Gemini Link [https://gemini.google.com/share/ab99e0754b78]-->
 
 
 
