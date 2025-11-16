@@ -145,7 +145,7 @@ sequenceDiagram
 
 
 
-(GEMINI CHAT)[https://gemini.google.com/share/062af23382fc]
+[GEMINI CHAT](https://gemini.google.com/share/062af23382fc)
 
 
 
