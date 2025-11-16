@@ -21,7 +21,6 @@ I'm focusing now on precisely mapping the actors to use cases, confirming that t
 Reviewing the Model
 I'm verifying that the diagram accurately reflects the classic library model, ensuring that the roles and actions of both the Librarian and Member are precisely mapped. I'm focusing on simplicity, making certain the core functionality, like issuing and returning books, is accurately represented, and that relationships, especially include and extend, are modeled correctly.
 -->
-This diagram models the functional requirements of the system, showing how different users (actors) interact with it.
 
 This diagram models the functional requirements of the system, showing how different users (actors) interact with it.
 
