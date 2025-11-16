@@ -133,13 +133,13 @@ sequenceDiagram
 
 1. ```checkout()```: The ```Customer``` (Actor) sends a ```checkout()``` message to the ```:CheckoutSystem```. The activation bar on the ```CheckoutSystem``` lifeline begins.
 2. ```getCartItems()```: The ```:CheckoutSystem``` sends a message to the ```:ShoppingCart``` to get the list of items and the total price.
-3. ```return cartItems: The :ShoppingCart (dashed line) returns this information to the :CheckoutSystem.
-4. createOrder(): The :CheckoutSystem creates a new :Order object, initializing it with the cart items. It's marked as "Pending" by default.
-5. processPayment(): The :CheckoutSystem forwards the total amount to the external :PaymentGateway.
-6. return paymentStatus: The :PaymentGateway returns a status (e.g., "Success" or "Failed").
-7. alt (Alternative Fragment): This box shows two possible outcomes:
-     * [If Success]: The system updates the :Order status to "Confirmed," clears the :ShoppingCart, and sends a displayConfirmation() message back to the Customer.
-     * [If Failed]: The system updates the :Order status to "Payment Failed" and sends a displayError() message back to the Customer.
+3. ```return cartItems```: The :ShoppingCart (dashed line) returns this information to the ```:CheckoutSystem```.
+4. ```createOrder()```: The ```:CheckoutSystem``` creates a new ```:Order``` object, initializing it with the cart items. It's marked as "Pending" by default.
+5. ```processPayment()```: The ```:CheckoutSystem``` forwards the total amount to the external ```:PaymentGateway```.
+6. ```return paymentStatus```: The ```:PaymentGateway``` returns a status (e.g., "Success" or "Failed").
+7. ```alt``` (Alternative Fragment): This box shows two possible outcomes:
+     * [If Success]: The system updates the ```:Order``` status to "Confirmed," clears the ```:ShoppingCart```, and sends a ```displayConfirmation()``` message back to the ```Customer```.
+     * [If Failed]: The system updates the ```:Order``` status to "Payment Failed" and sends a ```displayError()``` message back to the ```Customer```.
 
 
 
