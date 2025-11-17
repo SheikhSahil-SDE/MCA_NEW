@@ -76,3 +76,29 @@ sequenceDiagram
         LoginModule-->>Admin: 3. displayErrorMessage("Invalid Credentials")
     end
 ```
+
+**4. Step-by-Step Explanation**
+1. ```login()```: The ```Admin``` provides credentials to the ```LoginModule```.
+2. ```return authToken / status```: ```LoginModule``` returns authentication status.
+3. ```alt [Login Success]```: This covers two possible paths based on login:
+
+  * **Success Path:**
+    * ```requestAddEmployee()```: ```Admin``` initiates the action.
+    * ```displayEmployeeForm()```: ```EmployeeManagementSystem``` prompts ```Admin``` for details.
+    * ```submitEmployeeDetails()```: ```Admin``` provides the new employee's data.
+    * ```opt [Validate Details]```: An optional fragment for input validation.
+      * ```alt [Validation Failed]```: If validation fails, an error is shown.
+      * ```else [Validation Success]```: If successful:
+        * ```createEmployee()```: ```EmployeeManagementSystem``` creates a new ```Employee``` object.
+        * ```saveEmployee()```: This object is then persisted to the ```Database```.
+        * ```alt [Save Success]```: Handles success or failure of database save.
+          * **Success**: A success message is displayed to ```Admin```.
+          * **Failure**: A database error message is displayed.
+
+  * **Failure Path:**
+    * ```LoginModule``` displays an error for invalid credentials.
+
+This sequence diagram clearly illustrates the dynamic flow of interactions when an administrator adds a new employee, including validation and persistence steps.
+
+
+[Gemini Chat](https://gemini.google.com/share/52e1ea0b4531)
