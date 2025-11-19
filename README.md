@@ -1,0 +1,103 @@
+# 1. Create a UDP client on a node n1 and a UDP server on a node n2.
+```
+#include "ns3/core-module.h"
+#include "ns3/network-module.h"
+#include "ns3/internet-module.h"
+#include "ns3/point-to-point-module.h"
+#include "ns3/applications-module.h"
+
+using namespace ns3;
+
+int main(int argc, char *argv[])
+{
+    // Enable logging (shows packet sends/receives in terminal)
+    LogComponentEnable("UdpEchoClientApplication", LOG_LEVEL_INFO);
+    LogComponentEnable("UdpEchoServerApplication", LOG_LEVEL_INFO);
+
+    // Create 2 nodes: n1 (client), n2 (server)
+    NodeContainer nodes;
+    nodes.Create(2);
+
+    // Create a point-to-point link
+    PointToPointHelper pointToPoint;
+    pointToPoint.SetDeviceAttribute("DataRate", StringValue("5Mbps"));
+    pointToPoint.SetChannelAttribute("Delay", StringValue("2ms"));
+
+    NetDeviceContainer devices;
+    devices = pointToPoint.Install(nodes);
+
+    // Install Internet stack
+    InternetStackHelper stack;
+    stack.Install(nodes);
+
+    // Assign IP addresses
+    Ipv4AddressHelper address;
+    address.SetBase("10.1.1.0", "255.255.255.0");
+    Ipv4InterfaceContainer interfaces = address.Assign(devices);
+
+    // Create and install UDP server on node n2
+    uint16_t port = 9;          // UDP port
+    UdpEchoServerHelper echoServer(port);
+
+    ApplicationContainer serverApps = echoServer.Install(nodes.Get(1)); // n2
+    serverApps.Start(Seconds(1.0));
+    serverApps.Stop(Seconds(10.0));
+
+    // Create and install UDP client on node n1
+    UdpEchoClientHelper echoClient(interfaces.GetAddress(1), port);
+    echoClient.SetAttribute("MaxPackets", UintegerValue(5));
+    echoClient.SetAttribute("Interval", TimeValue(Seconds(1.0)));
+    echoClient.SetAttribute("PacketSize", UintegerValue(1024));
+
+    ApplicationContainer clientApps = echoClient.Install(nodes.Get(0)); // n1
+    clientApps.Start(Seconds(2.0));
+    clientApps.Stop(Seconds(10.0));
+
+    // Enable routing
+    Ipv4GlobalRoutingHelper::PopulateRoutingTables();
+
+    // Run simulation
+    Simulator::Run();
+    Simulator::Destroy();
+
+    return 0;
+}
+```
+
+
+Component
+Description
+
+NodeContainer nodes.Create(2)
+Creates n1 and n2
+
+PointToPointHelper
+Creates a wired link (5 Mbps, 2 ms delay)
+
+UdpEchoServerHelper
+Installs UDP server on n2
+
+UdpEchoClientHelper
+Installs UDP client on n1
+
+interfaces.GetAddress(1)
+IP of server node (n2)
+
+Simulator::Run()
+Starts simulation
+
+Logging
+Shows send/receive info in terminal
+
+
+
+```
+Output:
+cd ns-3.xx
+./ns3 run scratch/udp_client_server.cc
+
+At time 2s client sent 1024 bytes to 10.1.1.2 port 9
+At time 2.003s server received 1024 bytes from 10.1.1.1 port 49153
+At time 2.003s server sent 1024 bytes to 10.1.1.1 port 49153
+At time 2.006s client received 1024 bytes from 10.1.1.2 port 9
+```
