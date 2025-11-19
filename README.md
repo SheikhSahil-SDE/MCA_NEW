@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 ```
 
 
-Component | Description
+| Component | Description |
 
 NodeContainer nodes.Create(2) | Creates n1 and n2
 
