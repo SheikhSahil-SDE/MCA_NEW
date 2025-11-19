@@ -65,29 +65,21 @@ int main(int argc, char *argv[])
 ```
 
 
-Component
-Description
+Component | Description
 
-NodeContainer nodes.Create(2)
-Creates n1 and n2
+NodeContainer nodes.Create(2) | Creates n1 and n2
 
-PointToPointHelper
-Creates a wired link (5 Mbps, 2 ms delay)
+PointToPointHelper | Creates a wired link (5 Mbps, 2 ms delay)
 
-UdpEchoServerHelper
-Installs UDP server on n2
+UdpEchoServerHelper | Installs UDP server on n2
 
-UdpEchoClientHelper
-Installs UDP client on n1
+UdpEchoClientHelper | Installs UDP client on n1
 
-interfaces.GetAddress(1)
-IP of server node (n2)
+interfaces.GetAddress(1) | IP of server node (n2)
 
-Simulator::Run()
-Starts simulation
+Simulator::Run() | Starts simulation
 
-Logging
-Shows send/receive info in terminal
+Logging | Shows send/receive info in terminal
 
 
 
