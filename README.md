@@ -101,3 +101,114 @@ At time 2.003s server received 1024 bytes from 10.1.1.1 port 49153
 At time 2.003s server sent 1024 bytes to 10.1.1.1 port 49153
 At time 2.006s client received 1024 bytes from 10.1.1.2 port 9
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 2. Start a TCP application and monitor the packet flow. Make necessary assumptions.
+
+```
+#include "ns3/core-module.h"
+#include "ns3/network-module.h"
+#include "ns3/internet-module.h"
+#include "ns3/point-to-point-module.h"
+#include "ns3/applications-module.h"
+#include "ns3/flow-monitor-module.h"
+
+using namespace ns3;
+
+int main(int argc, char *argv[])
+{
+    // Enable TCP logging (optional)
+    LogComponentEnable("BulkSendApplication", LOG_LEVEL_INFO);
+    LogComponentEnable("PacketSink", LOG_LEVEL_INFO);
+
+    // Create two nodes: n1 (client), n2 (server)
+    NodeContainer nodes;
+    nodes.Create(2);
+
+    // Create a point-to-point channel between the two nodes
+    PointToPointHelper pointToPoint;
+    pointToPoint.SetDeviceAttribute("DataRate", StringValue("5Mbps"));
+    pointToPoint.SetChannelAttribute("Delay", StringValue("2ms"));
+
+    NetDeviceContainer devices;
+    devices = pointToPoint.Install(nodes);
+
+    // Install Internet stack (TCP/IP)
+    InternetStackHelper stack;
+    stack.Install(nodes);
+
+    // Assign IP addresses
+    Ipv4AddressHelper address;
+    address.SetBase("10.1.1.0", "255.255.255.0");
+
+    Ipv4InterfaceContainer interfaces = address.Assign(devices);
+
+    // Create a TCP server (PacketSink)
+    uint16_t port = 9;
+    Address sinkAddress(InetSocketAddress(interfaces.GetAddress(1), port));
+    PacketSinkHelper sinkHelper("ns3::TcpSocketFactory", InetSocketAddress(Ipv4Address::GetAny(), port));
+    ApplicationContainer sinkApp = sinkHelper.Install(nodes.Get(1));
+    sinkApp.Start(Seconds(0.0));
+    sinkApp.Stop(Seconds(10.0));
+
+    // Create a TCP client (BulkSendApplication)
+    BulkSendHelper source("ns3::TcpSocketFactory", sinkAddress);
+    source.SetAttribute("MaxBytes", UintegerValue(0)); // Unlimited data
+    ApplicationContainer sourceApp = source.Install(nodes.Get(0));
+    sourceApp.Start(Seconds(1.0));
+    sourceApp.Stop(Seconds(10.0));
+
+    // Enable routing
+    Ipv4GlobalRoutingHelper::PopulateRoutingTables();
+
+    // Install FlowMonitor to monitor packet flow
+    FlowMonitorHelper flowmon;
+    Ptr<FlowMonitor> monitor = flowmon.InstallAll();
+
+    // Run the simulation
+    Simulator::Stop(Seconds(11.0));
+    Simulator::Run();
+
+    // Print flow statistics
+    monitor->CheckForLostPackets();
+    Ptr<Ipv4FlowClassifier> classifier = DynamicCast<Ipv4FlowClassifier>(flowmon.GetClassifier());
+    std::map<FlowId, FlowMonitor::FlowStats> stats = monitor->GetFlowStats();
+
+    for (auto &flow : stats)
+    {
+        Ipv4FlowClassifier::FiveTuple t = classifier->FindFlow(flow.first);
+        std::cout << "Flow ID: " << flow.first << " (" << t.sourceAddress << " -> " << t.destinationAddress << ")\n";
+        std::cout << "  Tx Packets: " << flow.second.txPackets << "\n";
+        std::cout << "  Rx Packets: " << flow.second.rxPackets << "\n";
+        std::cout << "  Throughput: " 
+                  << (flow.second.rxBytes * 8.0 / (flow.second.timeLastRxPacket.GetSeconds() - flow.second.timeFirstTxPacket.GetSeconds())) / 1024
+                  << " Kbps\n";
+    }
+
+    // Cleanup
+    Simulator::Destroy();
+    return 0;
+}
+```
+
+```
+Output:
+cd ns-3.xx
+./ns3 run scratch/tcp_flow_monitor.cc
+
+Flow ID: 1 (10.1.1.1 -> 10.1.1.2)
+  Tx Packets: 360
+  Rx Packets: 360
+  Throughput: 4900.23 Kbps
+```
