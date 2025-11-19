@@ -212,3 +212,84 @@ Flow ID: 1 (10.1.1.1 -> 10.1.1.2)
   Rx Packets: 360
   Throughput: 4900.23 Kbps
 ```
+
+
+# 3. Create a UDPClient and UDPServer nodes and communicate at a fixed data rate. Make necessary assumptions.
+
+```
+#include "ns3/core-module.h"
+#include "ns3/network-module.h"
+#include "ns3/internet-module.h"
+#include "ns3/point-to-point-module.h"
+#include "ns3/applications-module.h"
+
+using namespace ns3;
+
+int main(int argc, char *argv[])
+{
+    // Enable logs (optional)
+    LogComponentEnable("OnOffApplication", LOG_LEVEL_INFO);
+    LogComponentEnable("PacketSink", LOG_LEVEL_INFO);
+
+    // 1 Create nodes: n1 = client, n2 = server
+    NodeContainer nodes;
+    nodes.Create(2);
+
+    // 2  Create a point-to-point channel between them
+    PointToPointHelper pointToPoint;
+    pointToPoint.SetDeviceAttribute("DataRate", StringValue("5Mbps"));
+    pointToPoint.SetChannelAttribute("Delay", StringValue("2ms"));
+
+    NetDeviceContainer devices;
+    devices = pointToPoint.Install(nodes);
+
+    // 3 Install Internet stack
+    InternetStackHelper stack;
+    stack.Install(nodes);
+
+    // 4 Assign IP addresses
+    Ipv4AddressHelper address;
+    address.SetBase("10.1.1.0", "255.255.255.0");
+    Ipv4InterfaceContainer interfaces = address.Assign(devices);
+
+    // 5 Create a UDP Server (PacketSink) on n2
+    uint16_t port = 9;
+    Address sinkAddress(InetSocketAddress(Ipv4Address::GetAny(), port));
+    PacketSinkHelper packetSinkHelper("ns3::UdpSocketFactory", sinkAddress);
+    ApplicationContainer sinkApp = packetSinkHelper.Install(nodes.Get(1)); // n2
+    sinkApp.Start(Seconds(0.0));
+    sinkApp.Stop(Seconds(10.0));
+
+    // 6 Create a UDP Client (OnOffApplication) on n1
+    OnOffHelper onoff("ns3::UdpSocketFactory", InetSocketAddress(interfaces.GetAddress(1), port));
+    onoff.SetAttribute("DataRate", StringValue("1Mbps")); // fixed sending rate
+    onoff.SetAttribute("PacketSize", UintegerValue(1024)); // 1 KB packets
+    onoff.SetAttribute("OnTime", StringValue("ns3::ConstantRandomVariable[Constant=1]"));
+    onoff.SetAttribute("OffTime", StringValue("ns3::ConstantRandomVariable[Constant=0]"));
+
+    ApplicationContainer clientApp = onoff.Install(nodes.Get(0)); // n1
+    clientApp.Start(Seconds(1.0));
+    clientApp.Stop(Seconds(10.0));
+
+    // 7 Enable routing
+    Ipv4GlobalRoutingHelper::PopulateRoutingTables();
+
+    // 8. Run the simulation
+    Simulator::Stop(Seconds(11.0));
+    Simulator::Run();
+    Simulator::Destroy();
+
+    return 0;
+}
+```
+```
+cd ns-3.xx
+./ns3 run scratch/udp_fixed_rate.cc
+
+At time 1s OnOffApplication StartSending
+At time 1.002s PacketSink received 1024 bytes
+At time 1.004s PacketSink received 1024 bytes
+```
+
+
+# 
