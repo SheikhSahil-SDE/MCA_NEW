@@ -292,4 +292,65 @@ At time 1.004s PacketSink received 1024 bytes
 ```
 
 
-# 
+# 4. Create a simple point to point network topology using two nodes. Make necessary assumptions
+
+
+```
+#include "ns3/core-module.h"
+#include "ns3/network-module.h"
+#include "ns3/internet-module.h"
+#include "ns3/point-to-point-module.h"
+
+using namespace ns3;
+
+int main(int argc, char *argv[])
+{
+    // Enable logging (optional)
+    LogComponentEnable("PointToPointNetDevice", LOG_LEVEL_INFO);
+
+    // 1 Create two nodes (n0 and n1)
+    NodeContainer nodes;
+    nodes.Create(2);
+
+    // 2 Create a point-to-point channel between them
+    PointToPointHelper pointToPoint;
+    pointToPoint.SetDeviceAttribute("DataRate", StringValue("5Mbps"));  // link speed
+    pointToPoint.SetChannelAttribute("Delay", StringValue("2ms"));      // propagation delay
+
+    // 3 Install the devices (NICs) on both nodes
+    NetDeviceContainer devices;
+    devices = pointToPoint.Install(nodes);
+
+    // 4 Install Internet stack (for IP connectivity)
+    InternetStackHelper stack;
+    stack.Install(nodes);
+
+    // 5 Assign IP addresses to the interfaces
+    Ipv4AddressHelper address;
+    address.SetBase("10.1.1.0", "255.255.255.0");
+
+    Ipv4InterfaceContainer interfaces = address.Assign(devices);
+
+    // 6 Print the assigned IP addresses
+    std::cout << "Node 0 IP Address: " << interfaces.GetAddress(0) << std::endl;
+    std::cout << "Node 1 IP Address: " << interfaces.GetAddress(1) << std::endl;
+
+    // 7 Optional) Enable packet tracing to observe traffic in Wireshark
+    pointToPoint.EnablePcapAll("simple_p2p_topology");
+
+    // 8 Run the simulation
+    Simulator::Run();
+    Simulator::Destroy();
+
+    return 0;
+}
+```
+```
+
+cd ns-3.xx
+./ns3 run scratch/simple_p2p_topology.cc
+
+
+Node 0 IP Address: 10.1.1.1
+Node 1 IP Address: 10.1.1.2
+```
