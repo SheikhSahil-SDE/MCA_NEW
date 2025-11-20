@@ -95,17 +95,6 @@ At time 2.006s client received 1024 bytes from 10.1.1.2 port 9
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
 # 2. Start a TCP application and monitor the packet flow. Make necessary assumptions.
 
 ```
@@ -193,6 +182,21 @@ int main(int argc, char *argv[])
     return 0;
 }
 ```
+
+Component Description
+
+Nodes: n1 (client), n2 (server)
+
+Link: Point-to-Point (5 Mbps, 2 ms delay)
+
+Application: BulkSendHelper (TCP sender) → PacketSink (TCP receiver)
+
+Protocol: TCP (default is TCP NewReno in NS-3)
+
+FlowMonitor: Tracks packets sent, received, and lost, and calculates throughput
+
+
+
 
 ```
 Output:
