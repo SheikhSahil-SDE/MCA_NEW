@@ -17,7 +17,15 @@
 # 2.15 Online Lab Resources
 
 
-# Give answers for the below [important questions for data mining lab ]"1. Explain in detail Apriori algorithm /frequently bought item set algorithm (for 20 marks )2.explain in detail all clustering algorithms 3. Explain in detail  All 5 classification algorithms in detail " all are of 20 marks so need long answers
+# Give answers for the below [important questions for data mining lab ]"
+
+1. Explain in detail Apriori algorithm /frequently bought item set algorithm (for 20 marks )
+
+2. Explain in detail all clustering algorithms 
+
+3. Explain in detail All 5 classification algorithms in detail " 
+
+all are of 20 marks so need long answers
 
 
 ### 1. Explain in Detail the Apriori Algorithm / Frequently Bought Item Set Algorithm
