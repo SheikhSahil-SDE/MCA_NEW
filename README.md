@@ -77,9 +77,9 @@ UdpEchoClientHelper | Installs UDP client on n1
 ----------------------------------------------
 interfaces.GetAddress(1) | IP of server node (n2)
 -----------------------------------------
-Simulator::Run() | Starts simulation
-
-Logging | Shows send/receive info in terminal
+Simulator::Run() | Starts simulation |
+--------------------------------------------------
+Logging | Shows send/receive info in terminal |
 
 
 
