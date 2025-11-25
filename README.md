@@ -352,3 +352,10 @@ cd ns-3.xx
 Node 0 IP Address: 10.1.1.1
 Node 1 IP Address: 10.1.1.2
 ```
+
+[Google Docs](https://docs.google.com/document/d/14XCEUZUNCyzeB_EgPPyUKyidU0Pb0s9f/edit)
+
+
+
+
+
