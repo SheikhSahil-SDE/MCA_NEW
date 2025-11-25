@@ -1,3 +1,5 @@
+# NS3 script solution to exam questions - computer network record
+
 # 1. Create a UDP client on a node n1 and a UDP server on a node n2.
 ```
 #include "ns3/core-module.h"
