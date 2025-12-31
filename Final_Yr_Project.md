@@ -47,6 +47,7 @@ Modern applications often mix serverless for spikes and containers for steady wo
 * **Autoscaling**: Use KEDA (Kubernetes Event-driven Autoscaling) to scale your K8s pods from zero to hundreds based on the number of messages in the queue.<br>
 * **Key Challenge**: Managing state and ensuring "Exactly-once" processing across both serverless and containerized environments.<br>
 <br>
+
 ## Recommended Tech Stack Enhancement
 
 * To make these projects "final year" worthy, consider adding these tools to your current list:
@@ -57,131 +58,152 @@ Modern applications often mix serverless for spikes and containers for steady wo
 
 ## 1. Enterprise-Grade DevSecOps Pipeline with Automated Compliance
 
-Great — below is a practical, step-by-step implementation plan you can follow to build the Enterprise-Grade DevSecOps Pipeline with Automated Compliance. It’s broken into phases, each with concrete tasks, example commands/config ideas, gating/fail‑fast rules, test scenarios, and an estimated timeline. Tell me which phase you want to start with and I can generate the exact repo structure, CI/CD pipeline files (Jenkinsfile / GitHub Actions / GitLab CI), Terraform templates, Kubernetes manifests/Helm charts, ArgoCD app manifests, SonarQube/Trivy configs, OPA policies, and sample alerts.
+Great — below is a practical, step-by-step implementation plan you can follow to build the Enterprise-Grade DevSecOps Pipeline with Automated Compliance.<br>
+It’s broken into phases, each with concrete tasks, example commands/config ideas, gating/fail‑fast rules, test scenarios, and an estimated timeline. <br>
+Tell me which phase you want to start with and I can generate the exact repo structure, CI/CD pipeline files (Jenkinsfile / GitHub Actions / GitLab CI), <br>
+Terraform templates, Kubernetes manifests/Helm charts, ArgoCD app manifests, SonarQube/Trivy configs, OPA policies, and sample alerts.<br>
 
-Summary architecture (target)
+**Summary architecture (target)**
 
-Git repo (GitHub/GitLab) with monorepo or microservices.
-CI server (Jenkins/GitLab CI/GitHub Actions) runs unit tests, SAST (SonarQube), SCA (Trivy/OWASP Dependency-Check), container build, container scan, image signing.
-Container registry (AWS ECR).
-IaC (Terraform) to create VPC, EKS, ECR, IAM.
-CD: ArgoCD (GitOps) to sync K8s manifests/Helm charts to EKS.
-Runtime security: OPA/Gatekeeper (admission control), Falco for runtime detection.
-Secrets: HashiCorp Vault with Kubernetes auth or AWS Secrets Manager.
-Observability: Prometheus + Grafana for metrics; ELK or Loki+Grafana for logs.
-Policy & compliance reporting: SonarQube reports, Trivy scans, OPA decision logs aggregated into dashboards and a compliance report.
+* Git repo (GitHub/GitLab) with monorepo or microservices.
+* CI server (Jenkins/GitLab CI/GitHub Actions) runs unit tests, SAST (SonarQube), SCA (Trivy/OWASP Dependency-Check), container build, container scan, image signing.
+* Container registry (AWS ECR).
+* IaC (Terraform) to create VPC, EKS, ECR, IAM.
+* CD: ArgoCD (GitOps) to sync K8s manifests/Helm charts to EKS.
+* Runtime security: OPA/Gatekeeper (admission control), Falco for runtime detection.
+* Secrets: HashiCorp Vault with Kubernetes auth or AWS Secrets Manager.
+* Observability: Prometheus + Grafana for metrics; ELK or Loki+Grafana for logs.
+* Policy & compliance reporting: SonarQube reports, Trivy scans, OPA decision logs aggregated into dashboards and a compliance report.
+
 Phase 0 — Preparations and prerequisites
 
-Choose provider & accounts
-AWS account (EKS + ECR) — or any cloud of choice.
-CI choice: Jenkins or GitLab CI or GitHub Actions.
-ArgoCD will run in the cluster.
-Dev setup
-Install local tools: Docker, kubectl, eksctl/terraform, helm, argocd CLI, jq, vault CLI.
-Create a project plan, repo layout and tasks (see milestones below).
-Phase 1 — Project skeleton & repo structure
+1. Choose provider & accounts
+* AWS account (EKS + ECR) — or any cloud of choice.
+* CI choice: Jenkins or GitLab CI or GitHub Actions.
+* ArgoCD will run in the cluster.
+2. Dev setup
+* Install local tools: Docker, kubectl, eksctl/terraform, helm, argocd CLI, jq, vault CLI.
+3. Create a project plan, repo layout and tasks (see milestones below).
+  
+<br> Phase 1 — Project skeleton & repo structure
 
-Create repo layout (example):
-/infra/terraform/ — Terraform for infra (VPC, EKS, ECR, IAM, Route53).
-/services/<service-name>/ — code, Dockerfile, tests.
-/charts/<service-name>/ — Helm chart or kustomize.
-/manifests/argocd/ — ArgoCD app definitions.
-/ci/ — pipeline templates (Jenkinsfile/GitHub Actions).
-/policies/ — OPA Rego files, Falco rules.
-/docs/ — architecture and compliance reports.
-Initialize repo and add README with architecture diagram.
+1. Create repo layout (example):
+* /infra/terraform/ — Terraform for infra (VPC, EKS, ECR, IAM, Route53).
+* /services/<service-name>/ — code, Dockerfile, tests.
+* /charts/<service-name>/ — Helm chart or kustomize.
+* /manifests/argocd/ — ArgoCD app definitions.
+* /ci/ — pipeline templates (Jenkinsfile/GitHub Actions).
+* /policies/ — OPA Rego files, Falco rules.
+* /docs/ — architecture and compliance reports.
+  
+2.Initialize repo and add README with architecture diagram.
+
 Phase 2 — Infrastructure as Code (IaC)
 
-Write Terraform modules:
-EKS cluster module (private/public subnets, nodegroups, IAM roles).
-ECR registry.
-VPC networking.
-(Optional) RDS/Aurora for stateful apps.
-Example flow:
-terraform init
-terraform plan
-terraform apply
-Output: kubeconfig, ECR repo URLs, IAM roles.
+1. Write Terraform modules:
+* EKS cluster module (private/public subnets, nodegroups, IAM roles).
+* ECR registry.
+* VPC networking.
+* (Optional) RDS/Aurora for stateful apps.
+
+2. Example flow:
+* terraform init
+* terraform plan
+* terraform apply
+3. Output: kubeconfig, ECR repo URLs, IAM roles.
+
 Phase 3 — Local service + Dockerfile + image lifecycle
 
-For each microservice:
-Create Dockerfile optimized for small image and multi-stage build.
-Add unit tests and integration test scripts.
-Local build & test:
-docker build -t myservice:dev .
-docker run / run tests
-Create a policy: no root user, minimal base image, scanning before push.
+1. For each microservice:
+* Create Dockerfile optimized for small image and multi-stage build.
+* Add unit tests and integration test scripts.
+2. Local build & test:
+* docker build -t myservice:dev .
+* docker run / run tests
+3. Create a policy: no root user, minimal base image, scanning before push.
+  
 Phase 4 — CI pipeline (fail‑fast security gates) Choose one CI system. Example design (stages):
 
-Checkout → Install dependencies → Unit tests → SAST (SonarQube) → SCA (OWASP/Trivy) → Build Docker image → Container scan (Trivy) → Sign image (cosign) → Push to ECR → Create deployment manifest in Git (for ArgoCD).
+* Checkout → Install dependencies → Unit tests → SAST (SonarQube) → SCA (OWASP/Trivy) → Build Docker image → Container scan (Trivy) → Sign image (cosign) → Push to ECR → Create deployment manifest in Git (for ArgoCD).
+
 Concrete examples / notes:
 
-SonarQube:
-Run scanner, publish report.
-Enforce SonarQube Quality Gate: fail pipeline if coverage < X% or blocker issues > 0.
-Trivy:
-trivy fs --exit-code 1 --severity HIGH,CRITICAL .
-Or trivy image --exit-code 1 --severity HIGH,CRITICAL registry/image:tag
-Configure acceptable vulnerabilities threshold.
-Container signing:
-Use cosign to sign images before pushing.
-Make the pipeline fail fast if:
-Unit tests fail.
-SonarQube quality gate fails.
-Trivy returns vulnerabilities above threshold.
-Image not signed.
-Example Jenkinsfile stage (pseudo):
-stage('SAST') { sh 'sonar-scanner ...' }
-stage('SCA') { sh 'trivy fs --exit-code 1 --severity HIGH,CRITICAL .' }
-stage('Build & Scan') { sh 'docker build ...; trivy image ...' }
+* SonarQube:
+ * Run scanner, publish report.
+ * Enforce SonarQube Quality Gate: fail pipeline if coverage < X% or blocker issues > 0.
+* Trivy:
+ * trivy fs --exit-code 1 --severity HIGH,CRITICAL .
+ * Or trivy image --exit-code 1 --severity HIGH,CRITICAL registry/image:tag
+ * Configure acceptable vulnerabilities threshold.
+* Container signing:
+ * Use cosign to sign images before pushing.
+* Make the pipeline fail fast if:
+ * Unit tests fail.
+ * SonarQube quality gate fails.
+ * Trivy returns vulnerabilities above threshold.
+ * Image not signed.
+* Example Jenkinsfile stage (pseudo):
+ * stage('SAST') { sh 'sonar-scanner ...' }
+ * stage('SCA') { sh 'trivy fs --exit-code 1 --severity HIGH,CRITICAL .' }
+ * stage('Build & Scan') { sh 'docker build ...; trivy image ...' }
+   
 Phase 5 — Container registry and image promotion
 
-Push images to ECR with tags: feature branch -> snapshot tag, main -> semantic version tags.
-Enforce only signed images allowed for production via admission controller (e.g., cosign verification in OPA or Kyverno).
-Keep an image promotion flow: staging → production using GitOps (promote chart revision).
+1. Push images to ECR with tags: feature branch -> snapshot tag, main -> semantic version tags.
+2. Enforce only signed images allowed for production via admission controller (e.g., cosign verification in OPA or Kyverno).
+3. Keep an image promotion flow: staging → production using GitOps (promote chart revision).
+
 Phase 6 — GitOps CD (ArgoCD)
 
-Store K8s manifests/Helm charts in git (same repo or separate infra repo).
-Install ArgoCD in the cluster.
-Create ArgoCD App resources pointing to the repo path and target cluster/namespace.
-Demo flow:
-CI merges change to main → CI builds & pushes image → CI updates image tag in Helm values or generates kustomize overlay commit → ArgoCD detects change and syncs → New pods rollout (canary/blue-green).
-Take advantage of Argo Rollouts for canary strategy if desired.
+1. Store K8s manifests/Helm charts in git (same repo or separate infra repo).
+2. Install ArgoCD in the cluster.
+3. Create ArgoCD App resources pointing to the repo path and target cluster/namespace.
+4. Demo flow:
+  * CI merges change to main → CI builds & pushes image → CI updates image tag in Helm values or generates kustomize overlay commit → ArgoCD detects change and syncs → New pods rollout (canary/blue-green).
+5. Take advantage of Argo Rollouts for canary strategy if desired.
+
 Phase 7 — Admission control: OPA/Gatekeeper + Kyverno and fail‑fast policy
 
-Deploy OPA/Gatekeeper or Kyverno:
-Write Rego policies to block images without signature, block privileged containers, enforce resource limits, disallow hostPath, check allowed registries, deny images with high CVEs metadata.
-Use OPA to evaluate compliance at admission time.
-Example Rego rule ideas:
-deny if image not in ECR repo or not signed
-deny if container runs as root
-warn if resource requests/limits missing
+1. Deploy OPA/Gatekeeper or Kyverno:
+ * Write Rego policies to block images without signature, block privileged containers, enforce resource limits, disallow hostPath, check allowed registries, deny images with high CVEs metadata.
+2. Use OPA to evaluate compliance at admission time.
+3. Example Rego rule ideas:
+ * deny if image not in ECR repo or not signed
+ * deny if container runs as root
+ * warn if resource requests/limits missing
+   
 Phase 8 — Runtime security: Falco / runtime detection
 
-Install Falco as DaemonSet to detect suspicious syscalls, file modifications, shell in container, etc.
-Add custom rules for your app (e.g., call to sensitive endpoints).
-Connect Falco alerts to alert manager or Slack.
+1. Install Falco as DaemonSet to detect suspicious syscalls, file modifications, shell in container, etc.
+2. Add custom rules for your app (e.g., call to sensitive endpoints).
+3. Connect Falco alerts to alert manager or Slack.
+
 Phase 9 — Secrets management
 
-Deploy Vault with Kubernetes auth OR integrate AWS Secrets Manager with KMS.
-Use Kubernetes CSI driver for Vault to inject secrets as files and avoid env var leaks.
-CI should not store cloud creds — use ephemeral role-based access (OIDC for EKS or assume-role in CI).
+1. Deploy Vault with Kubernetes auth OR integrate AWS Secrets Manager with KMS.
+2. Use Kubernetes CSI driver for Vault to inject secrets as files and avoid env var leaks.
+3. CI should not store cloud creds — use ephemeral role-based access (OIDC for EKS or assume-role in CI).
+
 Phase 10 — Observability, metrics, logs and compliance reporting
 
-Monitoring:
-Prometheus + Grafana for metrics (Kubernetes + app metrics).
-Configure alerts (Prometheus Alertmanager) for security events: too many restarts, OPA deny rate, Falco criticals.
-Logging:
-EFK (Elasticsearch, Fluentd/Fluent Bit, Kibana) or Loki + Grafana.
-Centralize SonarQube/Trivy reports / OPA logs into an audit dashboard.
-Compliance reports:
-Create nightly job that aggregates SonarQube quality gate history, Trivy scan history, OPA violation history and produces a PDF/HTML compliance report and stores in S3 or attaches to an issue.
+1. Monitoring:
+ * Prometheus + Grafana for metrics (Kubernetes + app metrics).
+ * Configure alerts (Prometheus Alertmanager) for security events: too many restarts, OPA deny rate, Falco criticals.
+
+2. Logging:
+ * EFK (Elasticsearch, Fluentd/Fluent Bit, Kibana) or Loki + Grafana.
+ * Centralize SonarQube/Trivy reports / OPA logs into an audit dashboard.
+
+3. Compliance reports:
+ * Create nightly job that aggregates SonarQube quality gate history, Trivy scan history, OPA violation history and produces a PDF/HTML compliance report and stores in S3 or attaches to an issue.
+
 Phase 11 — Automated remediation & rollback
 
-CI/CD automation:
-If ArgoCD sees OPA deny or critical Falco alert on a deployment, automatically rollback to last healthy revision: ArgoCD rollbacks via API or use Argo Rollouts automated analysis & rollback.
-Model for remediation:
-Alert → automated rollback script (ArgoCD app rollback) → open incident (create GitHub issue) with logs and vulnerability reports.
+1. CI/CD automation:
+   * If ArgoCD sees OPA deny or critical Falco alert on a deployment, automatically rollback to last healthy revision: ArgoCD rollbacks via API or use Argo Rollouts automated analysis & rollback.
+2. Model for remediation:
+ * Alert → automated rollback script (ArgoCD app rollback) → open incident (create GitHub issue) with logs and vulnerability reports.
+
 Phase 12 — Tests, demos and threat scenarios
 
 Test cases:
