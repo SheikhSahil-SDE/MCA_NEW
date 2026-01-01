@@ -17,7 +17,7 @@ Terraform templates, Kubernetes manifests/Helm charts, ArgoCD app manifests, Son
 * Observability: Prometheus + Grafana for metrics; ELK or Loki+Grafana for logs.
 * Policy & compliance reporting: SonarQube reports, Trivy scans, OPA decision logs aggregated into dashboards and a compliance report.
 
-Phase 0 — Preparations and prerequisites
+# Phase 0 — Preparations and prerequisites
 
 1. Choose provider & accounts
 * AWS account (EKS + ECR) — or any cloud of choice.
@@ -40,7 +40,7 @@ Phase 0 — Preparations and prerequisites
   
 2.Initialize repo and add README with architecture diagram.
 
-Phase 2 — Infrastructure as Code (IaC)
+# Phase 2 — Infrastructure as Code (IaC)
 
 1. Write Terraform modules:
 * EKS cluster module (private/public subnets, nodegroups, IAM roles).
@@ -54,7 +54,7 @@ Phase 2 — Infrastructure as Code (IaC)
 * terraform apply
 3. Output: kubeconfig, ECR repo URLs, IAM roles.
 
-Phase 3 — Local service + Dockerfile + image lifecycle
+# Phase 3 — Local service + Dockerfile + image lifecycle
 
 1. For each microservice:
 * Create Dockerfile optimized for small image and multi-stage build.
