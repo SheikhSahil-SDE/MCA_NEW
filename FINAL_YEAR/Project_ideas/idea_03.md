@@ -7,6 +7,6 @@ In 2025, deploying AI models is a major industry need. This project focuses on t
 * **Deployment**: The trained model is containerized with Docker and deployed as a microservice on EKS.<br>
 * **A/B Testing**: Use Canary Deployments to roll out new model versions to only 10% of users initially.<br>
 * **Monitoring**: Use Prometheus and Grafana to monitor "Model Drift" (performance loss over time).<br>
-* **Key Challenge**: Automating the decision-making process to rollback a model if its accuracy falls below a certain percentage in production.<br>****
+* **Key Challenge**: Automating the decision-making process to rollback a model if its accuracy falls below a certain percentage in production.<br>
 
 
