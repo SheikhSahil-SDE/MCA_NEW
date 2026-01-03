@@ -9,3 +9,50 @@ Modern applications often mix serverless for spikes and containers for steady wo
 * **Autoscaling**: Use KEDA (Kubernetes Event-driven Autoscaling) to scale your K8s pods from zero to hundreds based on the number of messages in the queue.<br>
 * **Key Challenge**: Managing state and ensuring "Exactly-once" processing across both serverless and containerized environments.<br>
 <br>
+
+
+
+Phase 1: Environment Setup & Infrastructure
+Since you are using a Lenovo laptop with 12GB RAM, I recommend using Minikube or Kind for local Kubernetes testing before deploying to AWS EKS to save on cloud costs.
+Cloud Provider: Use your AWS account.
+Kubernetes Cluster: Setup an Amazon EKS cluster or a local Minikube cluster.
+Messaging Hub: Create an Amazon SQS queue (easier for KEDA integration initially than Kinesis) or an Amazon MSK (Kafka) cluster.
+Development Tools: Ensure kubectl, helm, terraform (optional but recommended), and the AWS CLI are configured.
+Phase 2: The Serverless Pre-Processor (AWS Lambda)
+The goal here is to handle "bursty" traffic and filter noise before it hits your expensive Kubernetes resources.
+Trigger: Set up an S3 bucket or an API Gateway that pushes data into AWS Kinesis.
+Lambda Function: Write a Python-based Lambda function that:
+Consumes records from Kinesis.
+Performs "Lightweight Validation" (checking for missing fields).
+If valid, pushes the message into an Amazon SQS queue (which will act as the bridge to Kubernetes).
+Phase 3: The Kubernetes Worker (Microservice)
+This is your "Steady State" engine that handles complex business logic (e.g., database writes, heavy computations).
+Containerize: Create a Python or Node.js application that polls the SQS queue.
+Dockerize: Build the image and push it to Amazon ECR.
+Deployment: Create a standard Kubernetes Deployment manifest, but set the replicas to 0 initially.
+Phase 4: Event-Driven Autoscaling with KEDA
+This is the "heart" of your project. KEDA will monitor SQS and tell Kubernetes when to scale your pods.
+Install KEDA: Use Helm to install KEDA into your cluster:
+helm install keda kedacore/keda --namespace keda --create-namespace
+Define ScaledObject: Create a ScaledObject YAML file. This tells KEDA:
+Trigger: Amazon SQS.
+Threshold: "If there are more than 10 messages in the queue, spin up a new pod."
+Scale to Zero: If the queue is empty, terminate all pods to save resources.
+Phase 5: Solving the "Exactly-Once" Challenge
+To address your key challenge, you must implement Idempotency.
+Deduplication ID: When Lambda sends a message to SQS, attach a unique MessageDeduplicationId (if using SQS FIFO) or a UUID in the metadata.
+State Management: Use Amazon DynamoDB as a "Claims Check" store.
+Before the Kubernetes worker processes a job, it checks DynamoDB: "Has ID '123' been processed?"
+If yes, discard the message.
+If no, process it and mark it as "Complete" in DynamoDB.
+Phase 6: Monitoring & Visualization
+As an MCA project, you need a way to prove it works during your demo.
+Dashboard: Use CloudWatch to show the Lambda execution spikes.
+K8s Monitoring: Use Lens or the Kubernetes Dashboard to show pods spinning up and down in real-time as you flood the system with data.
+Frontend: Build a simple React/MERN dashboard that displays the final "Processed Data" from your database.
+Suggested Project Timeline
+Week 1: Infrastructure setup (EKS/Minikube & SQS).
+Week 2: Lambda development and Kinesis integration.
+Week 3: Containerizing the Worker and deploying to K8s.
+Week 4: Implementing KEDA and fine-tuning the Scaling triggers.
+Week 5: Idempotency logic with DynamoDB and UI Dashboard.
