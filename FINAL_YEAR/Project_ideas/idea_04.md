@@ -42,18 +42,18 @@ Deployment: Create a standard Kubernetes Deployment manifest, but set the replic
 # Phase 4: Event-Driven Autoscaling with KEDA
 
 This is the "heart" of your project. KEDA will monitor SQS and tell Kubernetes when to scale your pods.<br>
-Install KEDA: Use Helm to install KEDA into your cluster:
-helm install keda kedacore/keda --namespace keda --create-namespace <br>
-Define ScaledObject: Create a ScaledObject YAML file. This tells KEDA:
-Trigger: Amazon SQS.<br>
-Threshold: "If there are more than 10 messages in the queue, spin up a new pod."<br>
+Install KEDA: Use Helm to install KEDA into your cluster:```
+helm install keda kedacore/keda``` --namespace keda --create-namespace <br>
+**Define ScaledObject**: Create a ScaledObject YAML file. This tells KEDA:
+**Trigger**: Amazon SQS.<br>
+**Threshold**: "If there are more than 10 messages in the queue, spin up a new pod."<br>
 
 Scale to Zero: If the queue is empty, terminate all pods to save resources.
 
 # Phase 5: Solving the "Exactly-Once" Challenge
 To address your key challenge, you must implement Idempotency.<br>
-Deduplication ID: When Lambda sends a message to SQS, attach a unique MessageDeduplicationId (if using SQS FIFO) or a UUID in the metadata.<br>
-State Management: Use Amazon DynamoDB as a "Claims Check" store.<br>
+**Deduplication ID**: When Lambda sends a message to SQS, attach a unique MessageDeduplicationId (if using SQS FIFO) or a UUID in the metadata.<br>
+**State Management**: Use Amazon DynamoDB as a "Claims Check" store.<br>
 Before the Kubernetes worker processes a job, it checks DynamoDB: "Has ID '123' been processed?"<br>
 If yes, discard the message.
 If no, process it and mark it as "Complete" in DynamoDB.
@@ -61,13 +61,13 @@ If no, process it and mark it as "Complete" in DynamoDB.
 # Phase 6: Monitoring & Visualization
 
 As an MCA project, you need a way to prove it works during your demo.
-*Dashboard*: Use CloudWatch to show the Lambda execution spikes.
-K8s Monitoring: Use Lens or the Kubernetes Dashboard to show pods spinning up and down in real-time as you flood the system with data.
-*Frontend*: Build a simple React/MERN dashboard that displays the final "Processed Data" from your database.
+**Dashboard**: Use CloudWatch to show the Lambda execution spikes.
+**K8s Monitoring**: Use Lens or the Kubernetes Dashboard to show pods spinning up and down in real-time as you flood the system with data.
+**Frontend**: Build a simple React/MERN dashboard that displays the final "Processed Data" from your database.
 Suggested Project Timeline
 
-<br>*Week 1*: Infrastructure setup (EKS/Minikube & SQS).
-<br>*Week 2*: Lambda development and Kinesis integration.
-<br>*Week 3*: Containerizing the Worker and deploying to K8s.
-<br>*Week 4*: Implementing KEDA and fine-tuning the Scaling triggers.
-<br>*Week 5*: Idempotency logic with DynamoDB and UI Dashboard.
+<br>**Week 1**: Infrastructure setup (EKS/Minikube & SQS).
+<br>**Week 2**: Lambda development and Kinesis integration.
+<br>**Week 3**: Containerizing the Worker and deploying to K8s.
+<br>**Week 4**: Implementing KEDA and fine-tuning the Scaling triggers.
+<br>**Week 5**: Idempotency logic with DynamoDB and UI Dashboard.
