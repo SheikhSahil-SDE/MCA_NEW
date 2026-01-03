@@ -41,9 +41,9 @@ Deployment: Create a standard Kubernetes Deployment manifest, but set the replic
 
 # Phase 4: Event-Driven Autoscaling with KEDA
 
-This is the "heart" of your project. KEDA will monitor SQS and tell Kubernetes when to scale your pods.<br>
+This is the **"heart"** of your project. KEDA will monitor SQS and tell Kubernetes when to scale your pods.<br>
 Install KEDA: Use Helm to install KEDA into your cluster:```
-helm install keda kedacore/keda``` --namespace keda --create-namespace <br>
+helm install keda kedacore/keda --namespace keda --create-namespace``` <br>
 **Define ScaledObject**: Create a ScaledObject YAML file. This tells KEDA:
 **Trigger**: Amazon SQS.<br>
 **Threshold**: "If there are more than 10 messages in the queue, spin up a new pod."<br>
