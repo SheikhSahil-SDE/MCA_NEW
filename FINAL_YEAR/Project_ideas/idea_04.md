@@ -59,14 +59,15 @@ If yes, discard the message.
 If no, process it and mark it as "Complete" in DynamoDB.
 
 # Phase 6: Monitoring & Visualization
+
 As an MCA project, you need a way to prove it works during your demo.
-Dashboard: Use CloudWatch to show the Lambda execution spikes.
+*Dashboard*: Use CloudWatch to show the Lambda execution spikes.
 K8s Monitoring: Use Lens or the Kubernetes Dashboard to show pods spinning up and down in real-time as you flood the system with data.
-Frontend: Build a simple React/MERN dashboard that displays the final "Processed Data" from your database.
+*Frontend*: Build a simple React/MERN dashboard that displays the final "Processed Data" from your database.
 Suggested Project Timeline
 
-<br>Week 1: Infrastructure setup (EKS/Minikube & SQS).
-<br>Week 2: Lambda development and Kinesis integration.
-<br>Week 3: Containerizing the Worker and deploying to K8s.
-<br>Week 4: Implementing KEDA and fine-tuning the Scaling triggers.
-<br>Week 5: Idempotency logic with DynamoDB and UI Dashboard.
+<br>*Week 1*: Infrastructure setup (EKS/Minikube & SQS).
+<br>*Week 2*: Lambda development and Kinesis integration.
+<br>*Week 3*: Containerizing the Worker and deploying to K8s.
+<br>*Week 4*: Implementing KEDA and fine-tuning the Scaling triggers.
+<br>*Week 5*: Idempotency logic with DynamoDB and UI Dashboard.
