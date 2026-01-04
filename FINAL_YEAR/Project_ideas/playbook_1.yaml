@@ -1,0 +1,80 @@
+---
+- name: Setup Event-Driven Scaling Infrastructure
+  hosts: localhost
+  connection: local
+  vars:
+    namespace: monitoring
+    worker_namespace: default
+    prometheus_chart_version: "25.21.0"
+    adapter_chart_version: "4.10.0"
+
+  tasks:
+    - name: Create monitoring namespace
+      kubernetes.core.k8s:
+        name: "{{ namespace }}"
+        api_version: v1
+        kind: Namespace
+        state: present
+
+    - name: Add Prometheus Community Helm Repo
+      kubernetes.core.helm_repository:
+        name: prometheus-community
+        repo_url: "https://prometheus-community.github.io/helm-charts"
+
+    - name: Install Prometheus
+      kubernetes.core.helm:
+        name: prometheus
+        chart_ref: prometheus-community/prometheus
+        release_namespace: "{{ namespace }}"
+        chart_version: "{{ prometheus_chart_version }}"
+        values:
+          server:
+            persistentVolume:
+              enabled: false # Set to true for production/persistent data
+
+    - name: Install Prometheus Adapter
+      kubernetes.core.helm:
+        name: prometheus-adapter
+        chart_ref: prometheus-community/prometheus-adapter
+        release_namespace: "{{ namespace }}"
+        chart_version: "{{ adapter_chart_version }}"
+        values:
+          prometheus:
+            url: http://prometheus-server.monitoring.svc.cluster.local
+            port: 80
+          rules:
+            custom:
+              - seriesQuery: '{__name__=~"sqs_messages_visible"}'
+                resources:
+                  overrides:
+                    namespace: {resource: "namespace"}
+                    pod: {resource: "pod"}
+                name:
+                  matches: "sqs_messages_visible"
+                  as: "sqs_backlog_per_pod"
+                metricsQuery: 'sum(sqs_messages_visible) / count(up{job="worker-service"})'
+
+    - name: Deploy Horizontal Pod Autoscaler (HPA)
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          apiVersion: autoscaling/v2
+          kind: HorizontalPodAutoscaler
+          metadata:
+            name: worker-hpa
+            namespace: "{{ worker_namespace }}"
+          spec:
+            scaleTargetRef:
+              apiVersion: apps/v1
+              kind: Deployment
+              name: worker-microservice
+            minReplicas: 1
+            maxReplicas: 20
+            metrics:
+            - type: External
+              external:
+                metric:
+                  name: sqs_backlog_per_pod
+                target:
+                  type: AverageValue
+                  averageValue: "10"
