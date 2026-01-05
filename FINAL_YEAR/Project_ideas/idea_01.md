@@ -64,7 +64,7 @@ Terraform templates, Kubernetes manifests/Helm charts, ArgoCD app manifests, Son
 * docker run / run tests
 3. Create a policy: no root user, minimal base image, scanning before push.
   
-Phase 4 — CI pipeline (fail‑fast security gates) Choose one CI system. Example design (stages):
+# Phase 4 — CI pipeline (fail‑fast security gates) Choose one CI system. Example design (stages):
 
 * Checkout → Install dependencies → Unit tests → SAST (SonarQube) → SCA (OWASP/Trivy) → Build Docker image → Container scan (Trivy) → Sign image (cosign) → Push to ECR → Create deployment manifest in Git (for ArgoCD).
 
@@ -89,13 +89,13 @@ Concrete examples / notes:
  * stage('SCA') { sh 'trivy fs --exit-code 1 --severity HIGH,CRITICAL .' }
  * stage('Build & Scan') { sh 'docker build ...; trivy image ...' }
    
-Phase 5 — Container registry and image promotion
+# Phase 5 — Container registry and image promotion
 
 1. Push images to ECR with tags: feature branch -> snapshot tag, main -> semantic version tags.
 2. Enforce only signed images allowed for production via admission controller (e.g., cosign verification in OPA or Kyverno).
 3. Keep an image promotion flow: staging → production using GitOps (promote chart revision).
 
-Phase 6 — GitOps CD (ArgoCD)
+# Phase 6 — GitOps CD (ArgoCD)
 
 1. Store K8s manifests/Helm charts in git (same repo or separate infra repo).
 2. Install ArgoCD in the cluster.
@@ -104,7 +104,7 @@ Phase 6 — GitOps CD (ArgoCD)
   * CI merges change to main → CI builds & pushes image → CI updates image tag in Helm values or generates kustomize overlay commit → ArgoCD detects change and syncs → New pods rollout (canary/blue-green).
 5. Take advantage of Argo Rollouts for canary strategy if desired.
 
-Phase 7 — Admission control: OPA/Gatekeeper + Kyverno and fail‑fast policy
+# Phase 7 — Admission control: OPA/Gatekeeper + Kyverno and fail‑fast policy
 
 1. Deploy OPA/Gatekeeper or Kyverno:
  * Write Rego policies to block images without signature, block privileged containers, enforce resource limits, disallow hostPath, check allowed registries, deny images with high CVEs metadata.
@@ -114,19 +114,19 @@ Phase 7 — Admission control: OPA/Gatekeeper + Kyverno and fail‑fast policy
  * deny if container runs as root
  * warn if resource requests/limits missing
    
-Phase 8 — Runtime security: Falco / runtime detection
+# Phase 8 — Runtime security: Falco / runtime detection
 
 1. Install Falco as DaemonSet to detect suspicious syscalls, file modifications, shell in container, etc.
 2. Add custom rules for your app (e.g., call to sensitive endpoints).
 3. Connect Falco alerts to alert manager or Slack.
 
-Phase 9 — Secrets management
+# Phase 9 — Secrets management
 
 1. Deploy Vault with Kubernetes auth OR integrate AWS Secrets Manager with KMS.
 2. Use Kubernetes CSI driver for Vault to inject secrets as files and avoid env var leaks.
 3. CI should not store cloud creds — use ephemeral role-based access (OIDC for EKS or assume-role in CI).
 
-Phase 10 — Observability, metrics, logs and compliance reporting
+# Phase 10 — Observability, metrics, logs and compliance reporting
 
 1. Monitoring:
  * Prometheus + Grafana for metrics (Kubernetes + app metrics).
@@ -139,35 +139,34 @@ Phase 10 — Observability, metrics, logs and compliance reporting
 3. Compliance reports:
  * Create nightly job that aggregates SonarQube quality gate history, Trivy scan history, OPA violation history and produces a PDF/HTML compliance report and stores in S3 or attaches to an issue.
 
-Phase 11 — Automated remediation & rollback
+# Phase 11 — Automated remediation & rollback
 
 1. CI/CD automation:
    * If ArgoCD sees OPA deny or critical Falco alert on a deployment, automatically rollback to last healthy revision: ArgoCD rollbacks via API or use Argo Rollouts automated analysis & rollback.
 2. Model for remediation:
  * Alert → automated rollback script (ArgoCD app rollback) → open incident (create GitHub issue) with logs and vulnerability reports.
 
-Phase 12 — Tests, demos and threat scenarios
+# Phase 12 — Tests, demos and threat scenarios
 
-Test cases:
-Unit & integration tests for code.
-Mutating tests: build an image with a known CVE and ensure pipeline blocks it.
-Admission tests: try to deploy unsigned image — should be denied.
-Chaos: simulate node failure and ensure ArgoCD / Kubernetes recovers.
-Runtime breach simulation: mimic an exec into a pod and watch Falco alert.
-Compliance acceptance tests:
-SonarQube quality gate enforcement test.
+**Test cases**: Unit & integration tests for code.
+**Mutating tests**: build an image with a known CVE and ensure pipeline blocks it.
+**Admission tests**: try to deploy unsigned image — should be denied.
+**Chaos**: simulate node failure and ensure ArgoCD / Kubernetes recovers.
+**Runtime breach simulation**: mimic an exec into a pod and watch Falco alert.
+**Compliance acceptance tests**: SonarQube quality gate enforcement test.
 Trivy scanning with known vulnerable dependency blocking.
 Prepare demo scripts showing full flow (commit → pipeline → push → ArgoCD deploy → detect → rollback).
-Phase 13 — Documentation & handover
 
-Write operational runbook:
-How to onboard new services.
-How to change policy thresholds.
-How to investigate failures.
-Create a final report:
-Architecture diagram, components, policy rules, thresholds, test results.
-A scoring matrix: availability, security posture, mean time to detect (MTTD), mean time to remediate (MTTR).
-Fail‑Fast Gate: concrete design
+# Phase 13 — Documentation & handover
+
+Write operational runbook: 
+* How to onboard new services.
+* How to change policy thresholds.
+* How to investigate failures.
+**Create a final report**:
+* Architecture diagram, components, policy rules, thresholds, test results.
+* A scoring matrix: availability, security posture, mean time to detect (MTTD), mean time to remediate (MTTR).
+* Fail‑Fast Gate: concrete design
 
 Unit tests must pass (exit non-zero fails).
 SonarQube Quality Gate must be green. Use Sonar API to block further stages.
