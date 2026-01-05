@@ -187,15 +187,15 @@ int main(int argc, char *argv[])
 
 Component Description
 
-Nodes: n1 (client), n2 (server)
+**Nodes**: n1 (client), n2 (server)
 
-Link: Point-to-Point (5 Mbps, 2 ms delay)
+**Link**: Point-to-Point (5 Mbps, 2 ms delay)
 
-Application: BulkSendHelper (TCP sender) → PacketSink (TCP receiver)
+**Application**: BulkSendHelper (TCP sender) → PacketSink (TCP receiver)
 
-Protocol: TCP (default is TCP NewReno in NS-3)
+**Protocol**: TCP (default is TCP NewReno in NS-3)
 
-FlowMonitor: Tracks packets sent, received, and lost, and calculates throughput
+**FlowMonitor**: Tracks packets sent, received, and lost, and calculates throughput
 
 
 
