@@ -148,18 +148,18 @@ Concrete examples / notes:
 
 # Phase 12 — Tests, demos and threat scenarios
 
-**Test cases**: Unit & integration tests for code.
-**Mutating tests**: build an image with a known CVE and ensure pipeline blocks it.
-**Admission tests**: try to deploy unsigned image — should be denied.
-**Chaos**: simulate node failure and ensure ArgoCD / Kubernetes recovers.
-**Runtime breach simulation**: mimic an exec into a pod and watch Falco alert.
-**Compliance acceptance tests**: SonarQube quality gate enforcement test.
-Trivy scanning with known vulnerable dependency blocking.
-Prepare demo scripts showing full flow (commit → pipeline → push → ArgoCD deploy → detect → rollback).
+* **Test cases**: Unit & integration tests for code.
+* **Mutating tests**: build an image with a known CVE and ensure pipeline blocks it.
+* **Admission tests**: try to deploy unsigned image — should be denied.
+* **Chaos**: simulate node failure and ensure ArgoCD / Kubernetes recovers.
+* **Runtime breach simulation**: mimic an exec into a pod and watch Falco alert.
+* **Compliance acceptance tests**: SonarQube quality gate enforcement test.
+* Trivy scanning with known vulnerable dependency blocking.
+* Prepare demo scripts showing full flow (commit → pipeline → push → ArgoCD deploy → detect → rollback).
 
 # Phase 13 — Documentation & handover
 
-Write operational runbook: 
+**Write operational runbook**: 
 * How to onboard new services.
 * How to change policy thresholds.
 * How to investigate failures.
