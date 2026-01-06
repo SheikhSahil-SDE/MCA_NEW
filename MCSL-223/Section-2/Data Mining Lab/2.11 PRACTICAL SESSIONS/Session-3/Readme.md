@@ -12,5 +12,6 @@ algorithms with different support and confidence values.
 Apriori association rule algorithm. Study the rules generated.
 * Derive interesting insights and observe the effect of discretization in 
 the rule generation process.
-8. Implement the Apriori Algorithm to find the association rules in contactless.
+
+# 8. Implement the Apriori Algorithm to find the association rules in contactless.
 arff dataset.
