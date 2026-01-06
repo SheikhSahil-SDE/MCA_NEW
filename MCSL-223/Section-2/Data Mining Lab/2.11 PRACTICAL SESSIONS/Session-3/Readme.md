@@ -1,6 +1,6 @@
 # Session-3
 
-**7. Perform the following:**
+# 7. Perform the following:
 
 * Explore various options available in WEKA for preprocessing data and 
 apply unsupervised filters like Discretization, Resample-filter etc.. on 
