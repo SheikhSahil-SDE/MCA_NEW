@@ -1,0 +1,6 @@
+#Session-5
+
+# 12. Perform the following:
+* Use contactlenses.arff and load it into WEKA. Check that all attributes are nominal (categorical).
+* Change to the Associate Panel. Select “Apriori” as associator. After pressing the start button, Apriori starts to build its model and writes its output into the output field. The first part of the output (“Run information”) describes the options that have been set and the data set used. Make sure you understand all the data reported.
+* The rules that have been generated are listed at the end of the output. By default, only the 10 most valuable rules according to their confidence level are shown. Each rule consists of some attribute values on a left hand side of the arrow, the arrow sign and the right hand side list of attribute values. Right of the arrow sign are the predicted attribute values. Rules have certain support and confidence values. The number  before the arrow sign is the number of instances the rule applies to. The number after the arrow sign is the number of instances predicted correctly. The number in brackets after ‘conf:’ is the confidence of the rule. Analyse the rules mined from the data set. What are their confidence and support values? Examine the number of large itemsets – make sure you understand how this data has been calculated (check that the values you would get ‘manually’ are correct). 
