@@ -54,6 +54,7 @@ Session-7
 
 # 1.6 References/Further Readings 
 
+* [GEMINI](https://gemini.google.com/app/082eff92cf904180?hl=en-IN)
 * Grady Booch, James Rumbaugh and Ivar  Jacobson, “The Unified Modeling Language 
 User Guide”, Pearson Education,2004. 
  
@@ -63,6 +64,7 @@ User Guide”, Pearson Education,2004.
 
 * https://staruml.io/ 
 * https://docs.staruml.io/ 
+
 * https://docs.staruml.io/user-guide/editing-elements
 
 
