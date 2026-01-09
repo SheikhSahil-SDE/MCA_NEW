@@ -30,6 +30,7 @@
 
 # 2.8 REFERENCES 
 * [GEMINI](https://gemini.google.com/app/082eff92cf904180?hl=en-IN)
+  
 ● Download JDK: https://www.oracle.com/in/java/technologies/javase-downloads.html 
 
 ● JDK Installation Document for Multiple Platform: 
