@@ -90,6 +90,7 @@ This mirrors common servlet/JSP CRUD tutorial structures, keeping DAO separate f
 Student with a list of course IDs for enrollment.​
 
 ```JAVA```
+
 ```
 package model;
 
@@ -140,7 +141,9 @@ public class Course {
 
 **4) DAO layer (JDBC)**
 Pattern follows typical CRUD from established tutorials; adjust package names and imports accordingly. <br> You may use either direct JDBC with URL/username/password or JNDI DataSource lookups; both are illustrated
+
 ```JAVA```
+
 ```
 package dao;
 
@@ -368,7 +371,9 @@ public class StudentDAO {
 ```
 
 **CourseDAO to list courses for selection in forms:**
+
 ```JAVA```
+
 ```
 package dao;
 
@@ -427,6 +432,7 @@ Uses a Front Controller pattern similar to established CRUD examples, mapping ac
 javax.servlet.* or jakarta.servlet.* based on Tomcat/Servlet API version.
 
 ```JAVA```
+
 ```
 package web;
 
@@ -585,7 +591,10 @@ public class StudentController extends HttpServlet {
 **6) JSPs**
 List page to display and route to actions, modeled after typical servlet/JSP CRUD examples.
 
-**student-list.jsp**```TEXT ```
+**student-list.jsp**
+
+```TEXT ```
+
 ```
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="java.util.*,model.Student" %>
@@ -627,7 +636,9 @@ List page to display and route to actions, modeled after typical servlet/JSP CRU
 ```
 Form page handles both create and edit, using presence of student attribute to switch modes as demonstrated in JSP CRUD tutorials.
 
-**student-form.jsp:**```TEXT```
+**student-form.jsp:**
+```TEXT```
+
 ```
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="java.util.*,model.Student,model.Course" %>
@@ -684,7 +695,8 @@ Form page handles both create and edit, using presence of student attribute to s
 
 ```
 
-**Detail view page:**```TEXT```
+**Detail view page:**
+```TEXT```
 ```
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="java.util.*,model.Student" %>
@@ -712,7 +724,9 @@ Form page handles both create and edit, using presence of student attribute to s
 ```
 **7) web.xml and context params**
 *web.xml* for servlet mapping and JDBC params, following common patterns in CRUD tutorials. Adjust to jakarta.* if needed.
+
 ```xml```
+
 ```
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          version="3.1">
@@ -750,7 +764,9 @@ Form page handles both create and edit, using presence of student attribute to s
 **8) Optional: Tomcat JNDI DataSource (Pooling)**
 Using Tomcat’s JDBC Connection Pool via JNDI is recommended for production; configure in Tomcat’s context.xml or your app’s META-INF/context.xml, and then switch DAO constructors to the JNDI variant shown earlier. The pattern below follows Tomcat docs and Java Code Geeks guide; set your credentials accordingly.​
 
-**context.xml example:​** ```xml```
+**context.xml example:​** 
+```xml```
+
 ```
 <Context>
   <Resource name="jdbc/IGNOUDB"
