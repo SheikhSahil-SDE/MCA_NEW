@@ -127,7 +127,7 @@ This file (src/main/webapp/WEB-INF/web.xml) is the entry point for your web appl
 
 # 3. The Spring Configuration (spring-servlet.xml)
 This file (src/main/webapp/WEB-INF/spring-servlet.xml) configures Spring MVC. It tells Spring where to find your controllers and how to resolve view names into actual files.
-
+```
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -150,10 +150,12 @@ This file (src/main/webapp/WEB-INF/spring-servlet.xml) configures Spring MVC. It
     </bean>
 
 </beans>
-
+```
 ## 4. The Java Controller (HelloController.java)
 This is your first Spring controller. It's a simple Java class that responds to web requests.
 Place this file in src/main/java/com/example/controller/HelloController.java.
+
+```
 package com.example.controller;
 
 import org.springframework.stereotype.Controller;
@@ -177,9 +179,10 @@ public class HelloController {
         return "home";
     }
 }
-
+```
 ## 5. The View (home.jsp)
 This is the JSP file that will be rendered. Place it in src/main/webapp/WEB-INF/views/home.jsp.
+```
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -193,6 +196,7 @@ This is the JSP file that will be rendered. Place it in src/main/webapp/WEB-INF/
     <h3>${message}</h3>
 </body>
 </html>
+```
 
 ## 6. How to Build and Run
  * Build the Project: Open a terminal in the project's root directory (my-spring-mvc-app/) and run:
