@@ -83,7 +83,7 @@ Here is a JSP page that directly connects to the MySQL database (as set up previ
 * Make sure the MySQL JDBC driver (Connector/J) is in your server’s classpath or in your project's WEB-INF/lib folder.
 * This script directly connects, executes SQL, and prints results as specified in widely used JSP+JDBC how-tos.
 
-This page will display all student records from your IGNOU.Student table in tabular format each time it is loaded. Adjust your columns/labels as needed for more or fewer student detailsls.
+This page will display all student records from your IGNOU.Student table in tabular format each time it is loaded. Adjust your columns/labels as needed for more or fewer student details.
 
 
 
