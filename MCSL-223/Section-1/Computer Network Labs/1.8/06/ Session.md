@@ -1,4 +1,4 @@
-#Session – 6
+# Session – 6
 
 # 13. Use 2 nodes to setup a wireless ad-hoc network where nodes are placed at a fixed distance in a 3D plane.
 
