@@ -19,7 +19,7 @@ _“How does an object behave over time?”_
 
 **🎓 Online Examination System – State Chart Diagram**
 
-<img src="" width="500" alt="Session-06_14">
+<img src="https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Session-06/14/Session-06_14.png" width="500" alt="Session-06_14">
 
 **🔄 States of the Examination**
 1. Created – Exam is created by admin
