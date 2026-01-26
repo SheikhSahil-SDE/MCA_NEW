@@ -81,14 +81,14 @@ enum ExamState {
 **4️⃣ Class → Database Mapping (Objective-3)**
 🔹 Example Table: ```EXAM```
 
-**| Column     | Description                      |
+| Column     | Description                      |
 | ---------- | -------------------------------- |
 | exam_id    | Primary key                      |
 | subject    | Exam subject                     |
 | state      | Current state (CREATED, ACTIVE…) |
 | start_time | Exam start                       |
 | end_time   | Exam end                         |
-**
+
 
 
 
