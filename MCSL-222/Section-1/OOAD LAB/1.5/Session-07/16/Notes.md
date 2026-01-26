@@ -18,7 +18,7 @@ A Component Diagram shows:
 
 🎓 Online Examination System – Component Diagram
 
-<img src="[images/logo.png](https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Session-07/16/Session-07_16)" width="350" alt="Logo"/>
+<img src="https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Session-07/16/Session-07_16.png" width="" alt="Logo"/>
 
 
 
