@@ -19,7 +19,7 @@ _“Which components handle ordering, payment, inventory, and delivery?”_
 
 **🛒 Order Processing Application – Component Diagram**
 
-<img src="[images/logo.png](https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Session-07/17/Session-07_17.png)" width="" alt="Logo"/>
+<img src="https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Session-07/17/Session-07_17.png" width="" alt="Logo"/>
 
 🧩 Main Components
 
