@@ -18,7 +18,7 @@ _“In which states does a fund transfer transaction exist, and how does it chan
 
 <img src="https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Session-06/15/Session-06_15.png" width="" alt="Logo"/>
 
-** States of Fund Transfer Transaction**
+**States of Fund Transfer Transaction**
 1. Initiated
    – User selects fund transfer option
 2. Authenticated
