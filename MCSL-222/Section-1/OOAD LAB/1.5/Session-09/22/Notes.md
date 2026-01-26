@@ -1,6 +1,6 @@
 # 22. Implement the following Associations using C++/Java.
 
-<img src="https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Figure%201.17.jpg" alt="Figure 1.17" width="400"/>
+<img src="https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Figure%201.17.jpg" alt="Figure 1.17" width=""/>
 
 
 📌 Understanding the UML Diagram
