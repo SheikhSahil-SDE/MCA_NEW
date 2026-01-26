@@ -15,7 +15,7 @@ _“How does the Online Banking System work step by step?”_
 
 **🏦 Online Banking System – Activity Diagram**
 
-<img src="" width="500" alt="Session-05_12">
+<img src="https://github.com/SheikhSahil-SDE/MCA_NEW/blob/main/MCSL-222/Section-1/OOAD%20LAB/1.5/Session-05/Session-05_12.png" width="500" alt="Session-05_12">
 
 
 **🔄 Activity Flow (Step-by-Step)**
