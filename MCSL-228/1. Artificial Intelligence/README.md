@@ -1,4 +1,4 @@
-# LAB SESSIONS ON AI
+ LAB SESSIONS ON AI
 
 _Note :  In each of the problems given in the respective sessions, you are required to write the algorithm for the given problem, and map the steps of your algorithm with your python code, by using suitable comments._
 
@@ -42,3 +42,30 @@ a)Write a Python Program to implement AO* Algorithm
 # Session -10 
 
 a)Write a Python Program to implement for IDA* (Iterative Deepening A*) algorithm 
+
+
+
+
+# 2.7 REFERENCES
+
+* https://www.analyticsvidhya.com
+* https://www.geeksforgeeks.org
+* https://www.datacamp.com
+* https://towardsdatascience.com
+* https://medium.com
+* https://machinelearningmastery.com 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
