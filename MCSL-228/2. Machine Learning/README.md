@@ -52,3 +52,35 @@ a) Write a Python Program to implement K-Means Algorithm on a dataset of your ow
 # Session -20 
 
 a) Write a Python Program to implement DBSCAN Algorithm on a dataset of your own choice
+
+
+# 2.7 REFERENCES
+
+* https://www.analyticsvidhya.com
+* https://www.geeksforgeeks.org
+* https://www.datacamp.com
+* https://towardsdatascience.com
+* https://medium.com
+* https://machinelearningmastery.com 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
