@@ -22,3 +22,14 @@ Create a vector of characters of size 5, consisting of values: "This" "is" "a" "
 Question 5:
 
 It is always good to store numerical values rather than textual data. However, while input or output the textual values are easier to understand. An example, for this is as follows in R:
+> Fivepointscale=c(1:5)
+
+> names(Fivepointscale)
+
+c("Not Satisfactory", "Satisfactory", "Fair",
+
+"Good", "Very Good")
+
+> Feedback = Fivepointscale[c("Good", "Satisfactory")]
+
+Create a 7-point scale of information input and use this scale to input feedback. of 5 students about a question like "Feedback of experience of using an application (Bad, Somewhat bad, not good, ok, good, very good, excellent). Find the average of the feedback.
