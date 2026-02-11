@@ -14,3 +14,11 @@ Create a vector of first 50 even numbers, starting from 2. Also create a vector 
 Question 3:
 
 Create a vector of size 10 with 5th and 7th values as missing (store these values as NA). Use the "is.na()" to find locations of missing data.
+
+Question 4:
+
+Create a vector of characters of size 5, consisting of values: "This" "is" "a" "character" "vector". Find the index of value "is" in the vector using which() or match().
+
+Question 5:
+
+It is always good to store numerical values rather than textual data. However, while input or output the textual values are easier to understand. An example, for this is as follows in R:
